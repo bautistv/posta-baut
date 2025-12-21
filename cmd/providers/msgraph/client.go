@@ -91,7 +91,7 @@ func (gm *GraphMessenger) SendChatMessage(ctx context.Context, chatID string, ms
 
 func NewGraphMessenger(config MSGraphClientConfig) (GraphMessenger, error) {
 	// Initialise MS Graph Client
-	msGraphClient, err := NewMSGrapghClient(config)
+	msGraphClient, err := NewMSGraphClient(config)
 	if err != nil {
 		return GraphMessenger{}, fmt.Errorf("failed to create MS Graph Messenger: %w", err)
 	}
@@ -101,7 +101,7 @@ func NewGraphMessenger(config MSGraphClientConfig) (GraphMessenger, error) {
 	}, nil
 }
 
-func NewMSGrapghClient(config MSGraphClientConfig) (msgraphsdk.GraphServiceClient, error) {
+func NewMSGraphClient(config MSGraphClientConfig) (msgraphsdk.GraphServiceClient, error) {
 	cred, _ := azidentity.NewDeviceCodeCredential(&azidentity.DeviceCodeCredentialOptions{
 		TenantID: config.TenantID,
 		ClientID: config.ClientID,
