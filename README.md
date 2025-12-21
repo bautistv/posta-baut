@@ -52,9 +52,9 @@ graph TB
     style B1 fill:#4CAF50
     style B2 fill:#2196F3
     style C fill:#FF9800
-    style E fill:#7B1FA2
-    style F fill:#7B1FA2
-    style G fill:#7B1FA2
+    style E fill:#CE93D8
+    style F fill:#CE93D8
+    style G fill:#CE93D8
 ```
 
 ---
