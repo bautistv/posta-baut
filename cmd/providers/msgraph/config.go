@@ -1,4 +1,4 @@
-package posta_baut
+package msgraph
 
 type ClientConfig struct {
 	msClientConfig MSGraphClientConfig

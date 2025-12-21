@@ -1,4 +1,4 @@
-package posta_baut
+package messenger
 
 import (
 	"context"

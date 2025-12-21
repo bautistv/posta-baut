@@ -1,4 +1,4 @@
-package posta_baut
+package msgraph
 
 import (
 	"context"
@@ -8,10 +8,11 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 	graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
+	"github.com/posta-baut/messenger"
 )
 
 type Client struct {
-	GraphMessenger Messenger
+	GraphMessenger messenger.Messenger
 }
 
 type GraphMessenger struct {
@@ -20,10 +21,10 @@ type GraphMessenger struct {
 
 // SendChannelMessage sends a message to a specified channel in a team.
 // Returns an error if the operation fails.
-func (gm *GraphMessenger) SendChannelMessage(ctx context.Context, teamID string, channelID string, msg string) error {
+func (gm *GraphMessenger) SendChannelMessage(ctx context.Context, teamID string, channelID string, msgContent string) error {
 	requestBody := graphmodels.NewChatMessage()
 	body := graphmodels.NewItemBody()
-	content := msg
+	content := msgContent
 	body.SetContent(&content)
 	requestBody.SetBody(body)
 
@@ -71,10 +72,10 @@ func (gm *GraphMessenger) SendChannelMessage(ctx context.Context, teamID string,
 
 // SendChatMessage sends a message to a specified chat.
 // Returns an error if the operation fails.
-func (gm *GraphMessenger) SendChatMessage(ctx context.Context, chatID string, msg string) error {
+func (gm *GraphMessenger) SendChatMessage(ctx context.Context, chatID string, msgContent string) error {
 	requestBody := graphmodels.NewChatMessage()
 	body := graphmodels.NewItemBody()
-	content := msg
+	content := msgContent
 	body.SetContent(&content)
 	requestBody.SetBody(body)
 
