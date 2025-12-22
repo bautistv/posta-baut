@@ -5,6 +5,7 @@ go 1.24.2
 require (
 	connectrpc.com/connect v1.19.1
 	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.13.1
+	github.com/bufbuild/connect-go v1.10.0
 	github.com/golang/mock v1.6.0
 	github.com/microsoftgraph/msgraph-sdk-go v1.92.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20251213004720-97cd9d5aeac2
