@@ -1,0 +1,2 @@
+# Ignore local config files with secrets
+/config/local.yaml

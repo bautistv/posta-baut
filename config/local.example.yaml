@@ -1,0 +1,7 @@
+messenger_config:
+  tenant_id: "your-messenger-tenant-id"
+  client_id: "your-messenger-client-id"
+
+lookup_client_config:
+  tenant_id: "your-lookup-tenant-id"
+  client_id: "your-lookup-client-id"
