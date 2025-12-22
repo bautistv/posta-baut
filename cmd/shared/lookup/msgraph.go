@@ -2,14 +2,30 @@ package lookup
 
 import (
 	"context"
+	"fmt"
 	"log"
 
+	config "github.com/bautistv/posta-baut/cmd/config"
+	msgraph "github.com/bautistv/posta-baut/cmd/shared/msgraph"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 )
 
 type MSGraphLookup struct {
 	// graph client
 	client msgraphsdk.GraphServiceClient
+}
+
+// NewMSGraphLookupClient creates a new MSGraphLookup instance.
+func NewMSGraphLookupClient(cfg config.MSGraphClientConfig) (*MSGraphLookup, error) {
+	NewMSGraphClient, err := msgraph.NewMSGraphClient(cfg.TenantID, cfg.ClientID)
+	if err != nil {
+		log.Fatalf("failed to create MS Graph Client: %v", err)
+		return nil, fmt.Errorf("failed to create MS Graph Client: %w", err)
+	}
+	client := NewMSGraphClient
+	return &MSGraphLookup{
+		client: client,
+	}, nil
 }
 
 // TeamNameFromID looks up the team name given its ID.
