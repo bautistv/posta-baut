@@ -1,13 +1,28 @@
 package client
 
 import (
+	"log"
+
+	config "github.com/bautistv/posta-baut/cmd/config"
 	"github.com/bautistv/posta-baut/cmd/messenger"
 	lookup "github.com/bautistv/posta-baut/cmd/shared/lookup"
 )
 
-func NewClient(messenger messenger.Messenger, lookupClient lookup.TeamsLookupClient) *Client {
-	return &Client{
+func NewClient(messengerConfig config.MSGraphClientConfig, lookupClientConfig config.MSGraphClientConfig) (Client, error) {
+	messenger, err := messenger.NewGraphMessenger(messengerConfig)
+	if err != nil {
+		log.Printf("failed to create Graph Messenger: %v", err)
+		return Client{}, err
+	}
+	
+	lookupClient, err := lookup.NewMSGraphLookupClient(lookupClientConfig)
+	if err != nil {
+		log.Printf("failed to create MS Graph Lookup Client: %v", err)
+		return Client{}, err
+	}
+
+	return Client{
 		Messenger:    messenger,
 		LookupClient: lookupClient,
-	}
+	}, nil
 }

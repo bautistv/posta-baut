@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package posta_baut;
 
-option go_package = "github.com/bautistv/posta-baut/internal/pb;pb";
+option go_package = "github.com/bautistv/posta-baut/internal/pb/v1;pbv1";
 
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";

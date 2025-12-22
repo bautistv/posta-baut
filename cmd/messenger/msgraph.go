@@ -17,10 +17,10 @@ type GraphMessenger struct {
 
 // SendChannelMessage sends a message to a specified channel in a team.
 // Returns an error if the operation fails.
-func (gm *GraphMessenger) SendChannelMessage(ctx context.Context, teamID string, channelID string, msgContent string) error {
+func (gm GraphMessenger) SendChannelMessage(ctx context.Context, teamID string, channelID string, msg Message) error {
 	requestBody := graphmodels.NewChatMessage()
 	body := graphmodels.NewItemBody()
-	content := msgContent
+	content := msg.Content
 	body.SetContent(&content)
 	requestBody.SetBody(body)
 
@@ -44,10 +44,10 @@ func (gm *GraphMessenger) SendChannelMessage(ctx context.Context, teamID string,
 
 // SendChatMessage sends a message to a specified chat.
 // Returns an error if the operation fails.
-func (gm *GraphMessenger) SendChatMessage(ctx context.Context, chatID string, msgContent string) error {
+func (gm GraphMessenger) SendChatMessage(ctx context.Context, chatID string, msg Message) error {
 	requestBody := graphmodels.NewChatMessage()
 	body := graphmodels.NewItemBody()
-	content := msgContent
+	content := msg.Content
 	body.SetContent(&content)
 	requestBody.SetBody(body)
 
