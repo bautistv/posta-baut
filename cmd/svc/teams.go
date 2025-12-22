@@ -15,6 +15,12 @@ type teamsService struct {
 	Client *client.Client
 }
 
+func NewTeamsServiceClient(client *client.Client) *teamsService {
+	return &teamsService{
+		Client: client,
+	}
+}
+
 func (s *teamsService) SendMessage(ctx context.Context, req *connect.Request[pb.SendMessageRequest]) (*connect.Response[pb.SendMessageResponse], error) {
 	switch req.Msg.MessageType.(type) {
 	case *pb.SendMessageRequest_ChannelMessage:
