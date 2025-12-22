@@ -1,20 +1,16 @@
-package msgraph
+package messenger
 
 import (
 	"context"
 	"fmt"
-	"log"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	config "github.com/bautistv/posta-baut/cmd/config"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 	graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
-	"github.com/posta-baut/messenger"
 )
 
-type Client struct {
-	GraphMessenger messenger.Messenger
-}
-
+// GraphMessenger implements the Messenger interface using Microsoft Graph API.
 type GraphMessenger struct {
 	client msgraphsdk.GraphServiceClient
 }
@@ -36,33 +32,9 @@ func (gm *GraphMessenger) SendChannelMessage(ctx context.Context, teamID string,
 		Post(context.Background(), requestBody, nil)
 
 	if err != nil {
-		// get team name
-		teamName := ""
-		team, err := gm.client.Teams().ByTeamId(teamID).Get(ctx, nil)
-		if err != nil {
-			log.Println("failed to get team name for team ID %s: %v", teamID, err)
-		} else {
-			teamName = *team.GetDisplayName()
-		}
-
-		channelName := ""
-		channel, err := gm.client.
-			Teams().
-			ByTeamId(teamID).
-			Channels().
-			ByChannelId(channelID).
-			Get(ctx, nil)
-		if err != nil {
-			log.Println("failed to get channel name for channel ID %s: %v", channelID, err)
-		} else {
-			channelName = *channel.GetDisplayName()
-		}
-
 		return fmt.Errorf(
-			"failed to send channel message to channel %s (ID: %s) belonging to team %s (ID: %s): %w",
-			channelName,
+			"failed to send channel message to channel id %s belonging to team id %s: %w",
 			channelID,
-			teamName,
 			teamID,
 			err,
 		)
@@ -89,7 +61,7 @@ func (gm *GraphMessenger) SendChatMessage(ctx context.Context, chatID string, ms
 	return nil
 }
 
-func NewGraphMessenger(config MSGraphClientConfig) (GraphMessenger, error) {
+func NewGraphMessenger(config config.MSGraphClientConfig) (GraphMessenger, error) {
 	// Initialise MS Graph Client
 	msGraphClient, err := NewMSGraphClient(config)
 	if err != nil {
@@ -101,7 +73,7 @@ func NewGraphMessenger(config MSGraphClientConfig) (GraphMessenger, error) {
 	}, nil
 }
 
-func NewMSGraphClient(config MSGraphClientConfig) (msgraphsdk.GraphServiceClient, error) {
+func NewMSGraphClient(config config.MSGraphClientConfig) (msgraphsdk.GraphServiceClient, error) {
 	cred, _ := azidentity.NewDeviceCodeCredential(&azidentity.DeviceCodeCredentialOptions{
 		TenantID: config.TenantID,
 		ClientID: config.ClientID,
