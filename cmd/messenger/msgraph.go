@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	config "github.com/bautistv/posta-baut/cmd/config"
+	msgraph "github.com/bautistv/posta-baut/cmd/shared/msgraph"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 	graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
 )
@@ -61,9 +61,9 @@ func (gm *GraphMessenger) SendChatMessage(ctx context.Context, chatID string, ms
 	return nil
 }
 
-func NewGraphMessenger(config config.MSGraphClientConfig) (GraphMessenger, error) {
+func NewGraphMessenger(cfg config.MSGraphClientConfig) (GraphMessenger, error) {
 	// Initialise MS Graph Client
-	msGraphClient, err := NewMSGraphClient(config)
+	msGraphClient, err := msgraph.NewMSGraphClient(cfg.TenantID, cfg.ClientID)
 	if err != nil {
 		return GraphMessenger{}, fmt.Errorf("failed to create MS Graph Messenger: %w", err)
 	}
@@ -71,22 +71,4 @@ func NewGraphMessenger(config config.MSGraphClientConfig) (GraphMessenger, error
 	return GraphMessenger{
 		client: msGraphClient,
 	}, nil
-}
-
-func NewMSGraphClient(config config.MSGraphClientConfig) (msgraphsdk.GraphServiceClient, error) {
-	cred, _ := azidentity.NewDeviceCodeCredential(&azidentity.DeviceCodeCredentialOptions{
-		TenantID: config.TenantID,
-		ClientID: config.ClientID,
-		UserPrompt: func(ctx context.Context, message azidentity.DeviceCodeMessage) error {
-			fmt.Println(message.Message)
-			return nil
-		},
-	})
-
-	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, []string{"User.Read"})
-	if err != nil {
-		fmt.Printf("error creating client: %v\n", err)
-		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("Error creating Microsoft Graph Client: %w", err)
-	}
-	return *client, nil
 }
