@@ -9,12 +9,12 @@ type Messenger interface {
 		ctx context.Context,
 		teamID string,
 		channelID string,
-		msg string,
+		msg Message,
 	) error
 
 	SendChatMessage(
 		ctx context.Context,
 		chatID string,
-		msg string,
+		msg Message,
 	) error
 }
