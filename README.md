@@ -53,7 +53,6 @@ graph TB
     style C fill:#FF9800
     style E fill:#CE93D8
     style F fill:#CE93D8
-    style G fill:#CE93D8
 ```
 
 ---
