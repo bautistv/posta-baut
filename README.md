@@ -8,7 +8,7 @@
 
 `posta-baut` helps you send messages to Microsoft Teams. You can use it two ways:
 
-**1. As a library** - Import it into your Go project and call `messenger.SendChatMessage()` or `messenger.SendChannelMessage()`. You manage credentials, we handle the Microsoft API complexity.
+**1. As a library** - Import it into your Go project and call `messenger.SendChatMessage()` or `messenger.SendChannelMessage()`. You manage credentials, the library handles the Microsoft API complexity.
 
 **2. As a service** - Run a message relay that your apps can call. Apps make simple API requests, the service handles authentication, protocol selection, retries, and delivery.
 
