@@ -15,7 +15,7 @@ import (
 	"connectrpc.com/grpcreflect"
 	"github.com/bautistv/posta-baut/cmd/client"
 	"github.com/bautistv/posta-baut/cmd/svc"
-	"github.com/bautistv/posta-baut/internal/pb/pbconnect"
+	pbconnect "github.com/bautistv/posta-baut/internal/pb/v1/pbv1connect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 )

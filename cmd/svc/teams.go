@@ -7,7 +7,7 @@ import (
 	"connectrpc.com/connect"
 	"github.com/bautistv/posta-baut/cmd/client"
 	"github.com/bautistv/posta-baut/cmd/messenger"
-	"github.com/bautistv/posta-baut/internal/pb"
+	pb "github.com/bautistv/posta-baut/internal/pb/v1"
 )
 
 // Your service implementation
