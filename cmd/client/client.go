@@ -4,8 +4,8 @@ import (
 	"log"
 
 	config "github.com/bautistv/posta-baut/cmd/config"
-	"github.com/bautistv/posta-baut/cmd/messenger"
 	lookup "github.com/bautistv/posta-baut/cmd/shared/lookup"
+	"github.com/bautistv/posta-baut/pkg/messenger"
 )
 
 func NewClient(messengerConfig config.MSGraphClientConfig, lookupClientConfig config.MSGraphClientConfig) (Client, error) {

@@ -1,8 +1,8 @@
 package client
 
 import (
-	"github.com/bautistv/posta-baut/cmd/messenger"
 	lookup "github.com/bautistv/posta-baut/cmd/shared/lookup"
+	"github.com/bautistv/posta-baut/pkg/messenger"
 )
 
 type Client struct {
