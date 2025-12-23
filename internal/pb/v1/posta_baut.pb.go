@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v5.29.3
-// source: posta_baut.proto
+// source: v1/posta_baut.proto
 
-package pb
+package pbv1
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -36,7 +36,7 @@ type SendMessageRequest struct {
 
 func (x *SendMessageRequest) Reset() {
 	*x = SendMessageRequest{}
-	mi := &file_posta_baut_proto_msgTypes[0]
+	mi := &file_v1_posta_baut_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +48,7 @@ func (x *SendMessageRequest) String() string {
 func (*SendMessageRequest) ProtoMessage() {}
 
 func (x *SendMessageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_posta_baut_proto_msgTypes[0]
+	mi := &file_v1_posta_baut_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *SendMessageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendMessageRequest.ProtoReflect.Descriptor instead.
 func (*SendMessageRequest) Descriptor() ([]byte, []int) {
-	return file_posta_baut_proto_rawDescGZIP(), []int{0}
+	return file_v1_posta_baut_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SendMessageRequest) GetMessageType() isSendMessageRequest_MessageType {
@@ -115,7 +115,7 @@ type SendMessageResponse struct {
 
 func (x *SendMessageResponse) Reset() {
 	*x = SendMessageResponse{}
-	mi := &file_posta_baut_proto_msgTypes[1]
+	mi := &file_v1_posta_baut_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -127,7 +127,7 @@ func (x *SendMessageResponse) String() string {
 func (*SendMessageResponse) ProtoMessage() {}
 
 func (x *SendMessageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_posta_baut_proto_msgTypes[1]
+	mi := &file_v1_posta_baut_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -140,7 +140,7 @@ func (x *SendMessageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendMessageResponse.ProtoReflect.Descriptor instead.
 func (*SendMessageResponse) Descriptor() ([]byte, []int) {
-	return file_posta_baut_proto_rawDescGZIP(), []int{1}
+	return file_v1_posta_baut_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SendMessageResponse) GetSuccess() bool {
@@ -168,7 +168,7 @@ type ChatMessage struct {
 
 func (x *ChatMessage) Reset() {
 	*x = ChatMessage{}
-	mi := &file_posta_baut_proto_msgTypes[2]
+	mi := &file_v1_posta_baut_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -180,7 +180,7 @@ func (x *ChatMessage) String() string {
 func (*ChatMessage) ProtoMessage() {}
 
 func (x *ChatMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_posta_baut_proto_msgTypes[2]
+	mi := &file_v1_posta_baut_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -193,7 +193,7 @@ func (x *ChatMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatMessage.ProtoReflect.Descriptor instead.
 func (*ChatMessage) Descriptor() ([]byte, []int) {
-	return file_posta_baut_proto_rawDescGZIP(), []int{2}
+	return file_v1_posta_baut_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ChatMessage) GetChatId() string {
@@ -222,7 +222,7 @@ type ChannelMessage struct {
 
 func (x *ChannelMessage) Reset() {
 	*x = ChannelMessage{}
-	mi := &file_posta_baut_proto_msgTypes[3]
+	mi := &file_v1_posta_baut_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +234,7 @@ func (x *ChannelMessage) String() string {
 func (*ChannelMessage) ProtoMessage() {}
 
 func (x *ChannelMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_posta_baut_proto_msgTypes[3]
+	mi := &file_v1_posta_baut_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +247,7 @@ func (x *ChannelMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelMessage.ProtoReflect.Descriptor instead.
 func (*ChannelMessage) Descriptor() ([]byte, []int) {
-	return file_posta_baut_proto_rawDescGZIP(), []int{3}
+	return file_v1_posta_baut_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ChannelMessage) GetTeamId() string {
@@ -271,11 +271,11 @@ func (x *ChannelMessage) GetContent() string {
 	return ""
 }
 
-var File_posta_baut_proto protoreflect.FileDescriptor
+var File_v1_posta_baut_proto protoreflect.FileDescriptor
 
-const file_posta_baut_proto_rawDesc = "" +
+const file_v1_posta_baut_proto_rawDesc = "" +
 	"\n" +
-	"\x10posta_baut.proto\x12\n" +
+	"\x13v1/posta_baut.proto\x12\n" +
 	"posta_baut\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xa9\x01\n" +
 	"\x12SendMessageRequest\x12<\n" +
 	"\fchat_message\x18\x01 \x01(\v2\x17.posta_baut.ChatMessageH\x00R\vchatMessage\x12E\n" +
@@ -293,28 +293,28 @@ const file_posta_baut_proto_rawDesc = "" +
 	"channel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tchannelId\x12\x1d\n" +
 	"\acontent\x18\x03 \x01(\tB\x03\xe0A\x02R\acontent2|\n" +
 	"\fTeamsService\x12l\n" +
-	"\vSendMessage\x12\x1e.posta_baut.SendMessageRequest\x1a\x1f.posta_baut.SendMessageResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/messages/sendB/Z-github.com/bautistv/posta-baut/internal/pb;pbb\x06proto3"
+	"\vSendMessage\x12\x1e.posta_baut.SendMessageRequest\x1a\x1f.posta_baut.SendMessageResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/messages/sendB4Z2github.com/bautistv/posta-baut/internal/pb/v1;pbv1b\x06proto3"
 
 var (
-	file_posta_baut_proto_rawDescOnce sync.Once
-	file_posta_baut_proto_rawDescData []byte
+	file_v1_posta_baut_proto_rawDescOnce sync.Once
+	file_v1_posta_baut_proto_rawDescData []byte
 )
 
-func file_posta_baut_proto_rawDescGZIP() []byte {
-	file_posta_baut_proto_rawDescOnce.Do(func() {
-		file_posta_baut_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_posta_baut_proto_rawDesc), len(file_posta_baut_proto_rawDesc)))
+func file_v1_posta_baut_proto_rawDescGZIP() []byte {
+	file_v1_posta_baut_proto_rawDescOnce.Do(func() {
+		file_v1_posta_baut_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_v1_posta_baut_proto_rawDesc), len(file_v1_posta_baut_proto_rawDesc)))
 	})
-	return file_posta_baut_proto_rawDescData
+	return file_v1_posta_baut_proto_rawDescData
 }
 
-var file_posta_baut_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_posta_baut_proto_goTypes = []any{
+var file_v1_posta_baut_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_v1_posta_baut_proto_goTypes = []any{
 	(*SendMessageRequest)(nil),  // 0: posta_baut.SendMessageRequest
 	(*SendMessageResponse)(nil), // 1: posta_baut.SendMessageResponse
 	(*ChatMessage)(nil),         // 2: posta_baut.ChatMessage
 	(*ChannelMessage)(nil),      // 3: posta_baut.ChannelMessage
 }
-var file_posta_baut_proto_depIdxs = []int32{
+var file_v1_posta_baut_proto_depIdxs = []int32{
 	2, // 0: posta_baut.SendMessageRequest.chat_message:type_name -> posta_baut.ChatMessage
 	3, // 1: posta_baut.SendMessageRequest.channel_message:type_name -> posta_baut.ChannelMessage
 	0, // 2: posta_baut.TeamsService.SendMessage:input_type -> posta_baut.SendMessageRequest
@@ -326,12 +326,12 @@ var file_posta_baut_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_posta_baut_proto_init() }
-func file_posta_baut_proto_init() {
-	if File_posta_baut_proto != nil {
+func init() { file_v1_posta_baut_proto_init() }
+func file_v1_posta_baut_proto_init() {
+	if File_v1_posta_baut_proto != nil {
 		return
 	}
-	file_posta_baut_proto_msgTypes[0].OneofWrappers = []any{
+	file_v1_posta_baut_proto_msgTypes[0].OneofWrappers = []any{
 		(*SendMessageRequest_ChatMessage)(nil),
 		(*SendMessageRequest_ChannelMessage)(nil),
 	}
@@ -339,17 +339,17 @@ func file_posta_baut_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_posta_baut_proto_rawDesc), len(file_posta_baut_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_v1_posta_baut_proto_rawDesc), len(file_v1_posta_baut_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_posta_baut_proto_goTypes,
-		DependencyIndexes: file_posta_baut_proto_depIdxs,
-		MessageInfos:      file_posta_baut_proto_msgTypes,
+		GoTypes:           file_v1_posta_baut_proto_goTypes,
+		DependencyIndexes: file_v1_posta_baut_proto_depIdxs,
+		MessageInfos:      file_v1_posta_baut_proto_msgTypes,
 	}.Build()
-	File_posta_baut_proto = out.File
-	file_posta_baut_proto_goTypes = nil
-	file_posta_baut_proto_depIdxs = nil
+	File_v1_posta_baut_proto = out.File
+	file_v1_posta_baut_proto_goTypes = nil
+	file_v1_posta_baut_proto_depIdxs = nil
 }

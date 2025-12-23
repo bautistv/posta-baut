@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: posta_baut.proto
+// source: v1/posta_baut.proto
 
-package pb
+package pbv1
 
 import (
 	context "context"
@@ -117,5 +117,5 @@ var TeamsService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "posta_baut.proto",
+	Metadata: "v1/posta_baut.proto",
 }
