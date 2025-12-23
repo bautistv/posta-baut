@@ -1,12 +1,17 @@
 package messenger
 
+// MessageType represents the type of message being sent.
+// It can be either a chat message or a channel message.
 type MessageType string
 
 const (
+	// MessageTypeChat represents a direct chat message between users.
 	MessageTypeChat    MessageType = "chat"
+	// MessageTypeChannel represents a message sent to a channel within a team.
 	MessageTypeChannel MessageType = "channel"
 )
 
+// Message represents a message to be sent, either to a chat or a channel.
 type Message struct {
 	Type    MessageType
 	Content string

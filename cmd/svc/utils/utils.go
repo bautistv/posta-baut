@@ -1,4 +1,5 @@
-package svc
+// Package utils provides service-level utilities for the Posta Baut application.
+package utils
 
 import (
 	"fmt"

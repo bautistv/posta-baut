@@ -35,7 +35,7 @@ func main() {
 	}
 
 	// Create client configuration
-	cli, err := client.NewClient(cfg.MessengerConfig, cfg.LookupClientConfig)
+	cli, err := client.NewClient(cfg.SenderConfig, cfg.LookupClientConfig)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v\n", err)
 		return
@@ -47,5 +47,8 @@ func main() {
 		log.Fatalf("Failed to create server: %v\n", err)
 		return
 	}
-	server.Run()
+	err = server.Run()
+	if err != nil {
+		log.Fatalf("error running server: %v\n", err)
+	}
 }

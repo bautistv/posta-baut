@@ -61,6 +61,7 @@ func (gm GraphMessenger) SendChatMessage(ctx context.Context, chatID string, msg
 	return nil
 }
 
+// NewGraphMessenger creates a new GraphMessenger with the provided configuration.
 func NewGraphMessenger(cfg config.MSGraphClientConfig) (GraphMessenger, error) {
 	// Initialise MS Graph Client
 	msGraphClient, err := msgraph.NewMSGraphClient(cfg.TenantID, cfg.ClientID)

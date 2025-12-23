@@ -1,5 +1,5 @@
 client_config:
-  messenger_config:
+  sender_config:
     tenant_id: "your-messenger-tenant-id"
     client_id: "your-messenger-client-id"
 

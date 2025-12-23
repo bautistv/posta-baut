@@ -8,6 +8,7 @@ import (
 	"github.com/bautistv/posta-baut/pkg/messenger"
 )
 
+// NewClient creates a new Client with the provided Messenger and LookupClient configurations.
 func NewClient(messengerConfig config.MSGraphClientConfig, lookupClientConfig config.MSGraphClientConfig) (Client, error) {
 	messenger, err := messenger.NewGraphMessenger(messengerConfig)
 	if err != nil {

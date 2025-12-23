@@ -1,12 +1,13 @@
 package msgraph
 
+// AppConfig holds the overall application configuration.
 type AppConfig struct {
 	Client ClientConfig `yaml:"client_config"`
 }
 
 // ClientConfig holds configuration for a messenger client.
 type ClientConfig struct {
-	MessengerConfig    MSGraphClientConfig `yaml:"messenger_config"`
+	SenderConfig    MSGraphClientConfig `yaml:"sender_config"`
 	LookupClientConfig MSGraphClientConfig `yaml:"lookup_client_config"`
 }
 

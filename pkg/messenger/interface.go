@@ -4,6 +4,7 @@ import (
 	"context"
 )
 
+// Messenger defines methods for sending messages to chats and channels.
 type Messenger interface {
 	SendChannelMessage(
 		ctx context.Context,

@@ -1,3 +1,4 @@
+// Package svc provides service-level utilities for the Posta Baut application.
 package svc
 
 import (
@@ -11,7 +12,7 @@ import (
 	"github.com/bautistv/posta-baut/pkg/messenger"
 )
 
-// Your service implementation
+// teamsService implements the TeamsService defined in the protobuf.
 type teamsService struct {
 	Client *client.Client
 }
@@ -23,6 +24,7 @@ func NewTeamsServiceClient(client *client.Client) *teamsService {
 	}
 }
 
+// SendMessage handles sending messages to Microsoft Teams.
 func (s *teamsService) SendMessage(ctx context.Context, req *connect.Request[pb.SendMessageRequest]) (*connect.Response[pb.SendMessageResponse], error) {
 	// Convert the request to domain-level Message - messenger.Message
 	msg, err := utils.ReqToMsg(req.Msg)

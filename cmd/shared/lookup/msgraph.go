@@ -35,10 +35,9 @@ func (l *MSGraphLookup) TeamNameFromID(teamID string) (string, error) {
 	if err != nil {
 		log.Printf("failed to get team for team ID %s: %v", teamID, err)
 		return "", err
-	} else {
-		teamName = *team.GetDisplayName()
 	}
-
+	teamName = *team.GetDisplayName()
+	
 	return teamName, nil
 }
 
@@ -54,9 +53,8 @@ func (l *MSGraphLookup) ChannelNameFromID(teamID string, channelID string) (stri
 	if err != nil {
 		log.Printf("failed to get channel for channel ID %s: %v", channelID, err)
 		return "", err
-	} else {
-		channelName = *channel.GetDisplayName()
-	}
+	} 
+	channelName = *channel.GetDisplayName()
 
 	return channelName, nil
 }

@@ -21,7 +21,7 @@ func NewMSGraphClient(tenantID string, clientID string) (msgraphsdk.GraphService
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, []string{"User.Read"})
 	if err != nil {
 		fmt.Printf("error creating client: %v\n", err)
-		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("Error creating Microsoft Graph Client: %w", err)
+		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("error creating Microsoft Graph Client: %w", err)
 	}
 	return *client, nil
 }

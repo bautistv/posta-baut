@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// Send sends a message using the provided Messenger based on the MessageType.
 func Send(ctx context.Context, m Messenger, msg Message) error {
 	switch msg.Type {
 	case MessageTypeChat:

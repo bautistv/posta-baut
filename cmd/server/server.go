@@ -20,6 +20,7 @@ import (
 	"golang.org/x/net/http2/h2c"
 )
 
+// Server encapsulates the HTTP server for handling gRPC requests.
 type Server struct {
 	server *http.Server
 }
