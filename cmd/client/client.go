@@ -14,7 +14,7 @@ func NewClient(messengerConfig config.MSGraphClientConfig, lookupClientConfig co
 		log.Printf("failed to create Graph Messenger: %v", err)
 		return Client{}, err
 	}
-	
+
 	lookupClient, err := lookup.NewMSGraphLookupClient(lookupClientConfig)
 	if err != nil {
 		log.Printf("failed to create MS Graph Lookup Client: %v", err)

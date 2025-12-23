@@ -6,6 +6,6 @@ import (
 )
 
 type Client struct {
-	Messenger messenger.Messenger
+	Messenger    messenger.Messenger
 	LookupClient lookup.TeamsLookupClient
 }

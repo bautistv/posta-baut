@@ -16,6 +16,7 @@ type teamsService struct {
 	Client *client.Client
 }
 
+// NewTeamsServiceClient creates a new TeamsService with the provided client.
 func NewTeamsServiceClient(client *client.Client) *teamsService {
 	return &teamsService{
 		Client: client,
@@ -28,7 +29,7 @@ func (s *teamsService) SendMessage(ctx context.Context, req *connect.Request[pb.
 	if err != nil {
 		return nil, fmt.Errorf("failed to convert request to message: %w", err)
 	}
-	
+
 	// Use the client's Messenger to send the message
 	err = messenger.Send(ctx, s.Client.Messenger, msg)
 	if err != nil {
