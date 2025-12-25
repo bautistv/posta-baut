@@ -58,7 +58,7 @@ func TestGraphMessenger_SendChatMessage(t *testing.T) {
 
 func TestNewGraphMessenger(t *testing.T) {
 	type args struct {
-		cfg config.MSGraphClientConfig
+		cfg config.ClientConfig
 	}
 	tests := []struct {
 		name    string

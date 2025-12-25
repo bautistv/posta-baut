@@ -9,7 +9,7 @@ import (
 
 func TestNewMSGraphLookupClient(t *testing.T) {
 	type args struct {
-		cfg config.MSGraphClientConfig
+		cfg config.ClientConfig
 	}
 	tests := []struct {
 		name    string

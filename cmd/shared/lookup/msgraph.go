@@ -16,7 +16,7 @@ type MSGraphLookup struct {
 }
 
 // NewMSGraphLookupClient creates a new MSGraphLookup instance.
-func NewMSGraphLookupClient(cfg config.MSGraphClientConfig) (*MSGraphLookup, error) {
+func NewMSGraphLookupClient(cfg config.ClientConfig) (*MSGraphLookup, error) {
 	NewMSGraphClient, err := msgraph.NewMSGraphClient(cfg.TenantID, cfg.ClientID)
 	if err != nil {
 		log.Fatalf("failed to create MS Graph Client: %v", err)

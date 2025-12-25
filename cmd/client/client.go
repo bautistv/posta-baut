@@ -9,7 +9,7 @@ import (
 )
 
 // NewClient creates a new Client with the provided Messenger and LookupClient configurations.
-func NewClient(messengerConfig config.MSGraphClientConfig, lookupClientConfig config.MSGraphClientConfig) (Client, error) {
+func NewClient(messengerConfig config.ClientConfig, lookupClientConfig config.ClientConfig) (Client, error) {
 	messenger, err := msgraph.NewGraphMessenger(messengerConfig)
 	if err != nil {
 		log.Printf("failed to create Graph Messenger: %v", err)

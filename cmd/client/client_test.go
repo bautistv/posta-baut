@@ -9,8 +9,8 @@ import (
 
 func TestNewClient(t *testing.T) {
 	type args struct {
-		messengerConfig    config.MSGraphClientConfig
-		lookupClientConfig config.MSGraphClientConfig
+		messengerConfig    config.ClientConfig
+		lookupClientConfig config.ClientConfig
 	}
 	tests := []struct {
 		name    string
