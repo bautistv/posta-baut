@@ -9,7 +9,7 @@ func TestSend(t *testing.T) {
 	type args struct {
 		ctx context.Context
 		m   Messenger
-		msg Message
+		msg TeamsMessage
 	}
 	tests := []struct {
 		name    string
