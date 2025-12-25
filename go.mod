@@ -10,6 +10,7 @@ require (
 	github.com/goccy/go-yaml v1.19.1
 	github.com/golang/mock v1.6.0
 	github.com/microsoftgraph/msgraph-sdk-go v1.92.0
+	go.uber.org/mock v0.6.0
 	golang.org/x/net v0.46.1-0.20251013234738-63d1a5100f82
 	google.golang.org/genproto/googleapis/api v0.0.0-20251213004720-97cd9d5aeac2
 	google.golang.org/grpc v1.77.0
