@@ -8,7 +8,7 @@ import (
 	reflect "reflect"
 	"testing"
 
-	gomock "github.com/golang/mock/gomock"
+	gomock "go.uber.org/mock/gomock"
 )
 
 func TestNewMockTeamsLookup(t *testing.T) {
