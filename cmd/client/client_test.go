@@ -68,7 +68,7 @@ func TestNewClient(t *testing.T) {
 				},
 			},
 			wantErr: true,
-			wantErrMsg: "failed to create MS Graph Lookup Client",
+			wantErrMsg: "failed to create MS Graph Messenger: tenant ID is required",
 		},
 	}
 	for _, tt := range tests {
