@@ -1,53 +1,33 @@
 package server
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/bautistv/posta-baut/cmd/client"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestNewServer(t *testing.T) {
-	type args struct {
-		teamsServiceClient client.Client
-	}
-	tests := []struct {
-		name    string
-		args    args
-		want    Server
-		wantErr bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewServer(tt.args.teamsServiceClient)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("NewServer() error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if tt.wantErr {
-				return
-			}
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewServer() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+	t.Run("successful server initialisation", func(t *testing.T) {
+		teamsServiceClient := client.Client{}
+		_, err := NewServer(teamsServiceClient)
+		require.NoErrorf(t, err, "NewServer() error = %v, expected no error", err)
+	})
 }
 
-func TestServer_Run(t *testing.T) {
-	tests := []struct {
-		name    string
-		s       *Server
-		wantErr bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if err := tt.s.Run(); (err != nil) != tt.wantErr {
-				t.Errorf("Server.Run() error = %v, wantErr %v", err, tt.wantErr)
-			}
-		})
-	}
+// TODO: TestServerEndpoints tests that all expected endpoints are registered - https://github.com/bautistv/posta-baut/issues/12
+func TestServerEndpoints(t *testing.T) {
+}
+
+// TODO: TestServerGracefulShutdown tests the graceful shutdown mechanism - https://github.com/bautistv/posta-baut/issues/12
+func TestServerGracefulShutdown(t *testing.T) {
+}
+
+// TODO: TestServerShutdownTimeout tests shutdown timeout behavior - https://github.com/bautistv/posta-baut/issues/12
+func TestServerShutdownTimeout(t *testing.T) {
+}
+
+// TODO: TestServerConfiguration tests server configuration parameters - https://github.com/bautistv/posta-baut/issues/12
+func TestServerConfiguration(t *testing.T) {
 }
