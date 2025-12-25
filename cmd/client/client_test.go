@@ -1,10 +1,15 @@
 package client
 
 import (
-	"reflect"
 	"testing"
 
 	config "github.com/bautistv/posta-baut/cmd/config"
+	"github.com/stretchr/testify/require"
+)
+
+const (
+	validTenantID = "tenant-123"
+	validClientID = "client-123"
 )
 
 func TestNewClient(t *testing.T) {
@@ -15,22 +20,64 @@ func TestNewClient(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    Client
 		wantErr bool
+		wantErrMsg string
 	}{
-		// TODO: Add test cases.
+		// Success cases
+		{
+			name: "valid messenger config",
+			args: args{
+				messengerConfig: config.ClientConfig{
+					TenantID: validTenantID,
+					ClientID: validClientID,
+				},
+				lookupClientConfig: config.ClientConfig{
+					TenantID: validTenantID,
+					ClientID: validClientID,
+				},
+			},
+			wantErr: false,
+			wantErrMsg: "",
+		},
+		// Failure cases
+		{
+			name: "invalid messenger config",
+			args: args{
+				messengerConfig: config.ClientConfig{
+					TenantID: "",
+					ClientID: validClientID,
+				},
+				lookupClientConfig: config.ClientConfig{
+					TenantID: validTenantID,
+					ClientID: validClientID,
+				},
+			},
+			wantErr: true,
+			wantErrMsg: "failed to create Graph Messenger",
+		},
+		{
+			name: "invalid lookup client config",
+			args: args{
+				messengerConfig: config.ClientConfig{
+					TenantID: validTenantID,
+					ClientID: validClientID,
+				},
+				lookupClientConfig: config.ClientConfig{
+					TenantID: "",
+					ClientID: validClientID,
+				},
+			},
+			wantErr: true,
+			wantErrMsg: "failed to create MS Graph Lookup Client",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewClient(tt.args.messengerConfig, tt.args.lookupClientConfig)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("NewClient() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			_, err := NewClient(tt.args.messengerConfig, tt.args.lookupClientConfig)
 			if tt.wantErr {
-				return
-			}
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewClient() = %v, want %v", got, tt.want)
+				require.EqualErrorf(t, err, tt.wantErrMsg, "NewClient() error = %v, wantErr %v", err, tt.wantErr)
+			} else {
+				require.NoErrorf(t, err, "NewClient() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
