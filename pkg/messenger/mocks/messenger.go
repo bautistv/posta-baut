@@ -13,7 +13,6 @@ import (
 	context "context"
 	reflect "reflect"
 
-	messenger "github.com/bautistv/posta-baut/pkg/messenger"
 	gomock "go.uber.org/mock/gomock"
 )
 
@@ -42,7 +41,7 @@ func (m *MockMessenger) EXPECT() *MockMessengerMockRecorder {
 }
 
 // SendChannelMessage mocks base method.
-func (m *MockMessenger) SendChannelMessage(ctx context.Context, teamID, channelID string, msg messenger.TeamsMessage) error {
+func (m *MockMessenger) SendChannelMessage(ctx context.Context, teamID, channelID, msg string) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SendChannelMessage", ctx, teamID, channelID, msg)
 	ret0, _ := ret[0].(error)
@@ -56,7 +55,7 @@ func (mr *MockMessengerMockRecorder) SendChannelMessage(ctx, teamID, channelID, 
 }
 
 // SendChatMessage mocks base method.
-func (m *MockMessenger) SendChatMessage(ctx context.Context, chatID string, msg messenger.TeamsMessage) error {
+func (m *MockMessenger) SendChatMessage(ctx context.Context, chatID, msg string) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SendChatMessage", ctx, chatID, msg)
 	ret0, _ := ret[0].(error)

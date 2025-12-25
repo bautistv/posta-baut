@@ -1,43 +1,35 @@
 syntax = "proto3";
 
-package posta_baut;
+package pb;
 
 option go_package = "github.com/bautistv/posta-baut/internal/pb/v1;pbv1";
 
-import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
-import "google/protobuf/wrappers.proto";
 
-service TeamsService {
-  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {
-    option (google.api.http) = {
-      post: "/v1/messages/send"
-      body: "*"
-    };
+message TeamsChannelTarget {
+  string team_id = 1 [(google.api.field_behavior) = REQUIRED];
+  string channel_id = 2 [(google.api.field_behavior) = REQUIRED];
+  string thread_id = 3; // optional
+}
+
+message TeamsChatTarget {
+  string chat_id = 1 [(google.api.field_behavior) = REQUIRED];
+  string reply_to_message_id = 2; // optional
+}
+
+message MessageTarget {
+  oneof target {
+    TeamsChannelTarget channel = 1;
+    TeamsChatTarget chat = 2;
   }
 }
 
 message SendMessageRequest {
-  oneof message_type {
-    ChatMessage chat_message = 1;
-    ChannelMessage channel_message = 2;
-  }
-}
+  MessageTarget target = 1 [(google.api.field_behavior) = REQUIRED];
 
-message SendMessageResponse {
-  bool success = 1;
-  string error_message = 2;
-}
-
-// Represents a message to send in a chat (1:1 or group chat)
-message ChatMessage {
-  string chat_id = 1 [(google.api.field_behavior) = REQUIRED];
   string content = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
-// Represents a message to send in a team channel
-message ChannelMessage {
-  string team_id = 1 [(google.api.field_behavior) = REQUIRED];
-  string channel_id = 2 [(google.api.field_behavior) = REQUIRED];
-  string content = 3 [(google.api.field_behavior) = REQUIRED];
+message SendMessageResponse {
+  string message_id = 1 [(google.api.field_behavior) = REQUIRED];
 }

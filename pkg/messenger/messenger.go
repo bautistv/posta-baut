@@ -7,16 +7,15 @@ import (
 
 // Messenger defines methods for sending messages to chats and channels.
 type Messenger interface {
-	// SendChannelMessage pointer receiver
 	SendChannelMessage(
 		ctx context.Context,
 		teamID string,
 		channelID string,
-		msg TeamsMessage,
+		msg string,
 	) error
 	SendChatMessage(
 		ctx context.Context,
 		chatID string,
-		msg TeamsMessage,
+		msg string,
 	) error
 }
