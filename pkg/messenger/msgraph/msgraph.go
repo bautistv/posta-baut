@@ -1,4 +1,4 @@
-package messenger
+package msgraph
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 
 	config "github.com/bautistv/posta-baut/cmd/config"
 	msgraph "github.com/bautistv/posta-baut/cmd/shared/msgraph"
+	messenger "github.com/bautistv/posta-baut/pkg/messenger"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 	graphmodels "github.com/microsoftgraph/msgraph-sdk-go/models"
 )
@@ -17,7 +18,7 @@ type GraphMessenger struct {
 
 // SendChannelMessage sends a message to a specified channel in a team.
 // Returns an error if the operation fails.
-func (gm GraphMessenger) SendChannelMessage(ctx context.Context, teamID string, channelID string, msg Message) error {
+func (gm GraphMessenger) SendChannelMessage(ctx context.Context, teamID string, channelID string, msg messenger.TeamsMessage) error {
 	requestBody := graphmodels.NewChatMessage()
 	body := graphmodels.NewItemBody()
 	content := msg.Content
@@ -44,7 +45,7 @@ func (gm GraphMessenger) SendChannelMessage(ctx context.Context, teamID string, 
 
 // SendChatMessage sends a message to a specified chat.
 // Returns an error if the operation fails.
-func (gm GraphMessenger) SendChatMessage(ctx context.Context, chatID string, msg Message) error {
+func (gm GraphMessenger) SendChatMessage(ctx context.Context, chatID string, msg messenger.TeamsMessage) error {
 	requestBody := graphmodels.NewChatMessage()
 	body := graphmodels.NewItemBody()
 	content := msg.Content

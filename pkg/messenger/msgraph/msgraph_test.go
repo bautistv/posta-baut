@@ -1,4 +1,4 @@
-package messenger
+package msgraph
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	config "github.com/bautistv/posta-baut/cmd/config"
+	messenger "github.com/bautistv/posta-baut/pkg/messenger"
 )
 
 func TestGraphMessenger_SendChannelMessage(t *testing.T) {
@@ -13,7 +14,7 @@ func TestGraphMessenger_SendChannelMessage(t *testing.T) {
 		ctx       context.Context
 		teamID    string
 		channelID string
-		msg       Message
+		msg       messenger.TeamsMessage
 	}
 	tests := []struct {
 		name    string
@@ -36,7 +37,7 @@ func TestGraphMessenger_SendChatMessage(t *testing.T) {
 	type args struct {
 		ctx    context.Context
 		chatID string
-		msg    Message
+		msg    messenger.TeamsMessage
 	}
 	tests := []struct {
 		name    string
