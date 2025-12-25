@@ -19,7 +19,6 @@ type MSGraphLookup struct {
 func NewMSGraphLookupClient(cfg config.ClientConfig) (*MSGraphLookup, error) {
 	NewMSGraphClient, err := msgraph.NewMSGraphClient(cfg.TenantID, cfg.ClientID)
 	if err != nil {
-		log.Fatalf("failed to create MS Graph Client: %v", err)
 		return nil, fmt.Errorf("failed to create MS Graph Client: %w", err)
 	}
 	client := NewMSGraphClient

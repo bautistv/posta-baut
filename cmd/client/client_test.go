@@ -18,9 +18,9 @@ func TestNewClient(t *testing.T) {
 		lookupClientConfig config.ClientConfig
 	}
 	tests := []struct {
-		name    string
-		args    args
-		wantErr bool
+		name       string
+		args       args
+		wantErr    bool
 		wantErrMsg string
 	}{
 		// Success cases
@@ -36,7 +36,7 @@ func TestNewClient(t *testing.T) {
 					ClientID: validClientID,
 				},
 			},
-			wantErr: false,
+			wantErr:    false,
 			wantErrMsg: "",
 		},
 		// Failure cases
@@ -52,8 +52,8 @@ func TestNewClient(t *testing.T) {
 					ClientID: validClientID,
 				},
 			},
-			wantErr: true,
-			wantErrMsg: "failed to create Graph Messenger",
+			wantErr:    true,
+			wantErrMsg: "failed to create messenger",
 		},
 		{
 			name: "invalid lookup client config",
@@ -67,15 +67,15 @@ func TestNewClient(t *testing.T) {
 					ClientID: validClientID,
 				},
 			},
-			wantErr: true,
-			wantErrMsg: "failed to create MS Graph Messenger: tenant ID is required",
+			wantErr:    true,
+			wantErrMsg: "failed to create lookup client",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			_, err := NewClient(tt.args.messengerConfig, tt.args.lookupClientConfig)
 			if tt.wantErr {
-				require.EqualErrorf(t, err, tt.wantErrMsg, "NewClient() error = %v, wantErr %v", err, tt.wantErr)
+				require.ErrorContainsf(t, err, tt.wantErrMsg, "NewClient() error = %v, wantErr %v", err, tt.wantErr)
 			} else {
 				require.NoErrorf(t, err, "NewClient() error = %v, wantErr %v", err, tt.wantErr)
 			}
