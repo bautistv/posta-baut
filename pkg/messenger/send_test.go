@@ -84,16 +84,6 @@ func TestSend_Fail(t *testing.T) {
 			wantErr:    true,
 			wantErrMsg: "missing team ID from channel message",
 		},
-		{
-			name: "successful chat message send",
-			m:    mocks.NewMockMessenger(nil),
-			msg: messenger.TeamsMessage{
-				Type:    messenger.MessageTypeChat,
-				ChatID:  validChatID,
-				Content: "Hello, Chat!",
-			},
-			wantErr: false,
-		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -120,13 +110,11 @@ func TestSend_Success(t *testing.T) {
     }
 
     for _, tt := range tests {
-        tt := tt
         t.Run(tt.name, func(t *testing.T) {
-            ctrl := gomock.NewController(t)
-            defer ctrl.Finish()
-
+            ctrl := gomock.NewController(t)              
+			defer ctrl.Finish()
+			
             mockMessenger := mocks.NewMockMessenger(ctrl)
-
             switch tt.msg.Type {
             case messenger.MessageTypeChat:
                 mockMessenger.EXPECT().
