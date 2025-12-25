@@ -8,7 +8,6 @@ require (
 	connectrpc.com/grpcreflect v1.3.0
 	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.13.1
 	github.com/goccy/go-yaml v1.19.1
-	github.com/golang/mock v1.6.0
 	github.com/microsoftgraph/msgraph-sdk-go v1.92.0
 	go.uber.org/mock v0.6.0
 	golang.org/x/net v0.46.1-0.20251013234738-63d1a5100f82
