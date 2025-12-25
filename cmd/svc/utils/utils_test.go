@@ -16,7 +16,7 @@ func TestReqToMsg(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    messenger.Message
+		want    messenger.TeamsMessage
 		wantErr bool
 	}{
 		// TODO: Add test cases.

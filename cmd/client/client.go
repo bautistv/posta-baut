@@ -5,12 +5,12 @@ import (
 
 	config "github.com/bautistv/posta-baut/cmd/config"
 	lookup "github.com/bautistv/posta-baut/cmd/shared/lookup"
-	"github.com/bautistv/posta-baut/pkg/messenger"
+	msgraph "github.com/bautistv/posta-baut/pkg/messenger/msgraph"
 )
 
 // NewClient creates a new Client with the provided Messenger and LookupClient configurations.
 func NewClient(messengerConfig config.MSGraphClientConfig, lookupClientConfig config.MSGraphClientConfig) (Client, error) {
-	messenger, err := messenger.NewGraphMessenger(messengerConfig)
+	messenger, err := msgraph.NewGraphMessenger(messengerConfig)
 	if err != nil {
 		log.Printf("failed to create Graph Messenger: %v", err)
 		return Client{}, err

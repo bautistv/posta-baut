@@ -9,13 +9,13 @@ import (
 )
 
 // ReqToMsg converts a SendMessageRequest to a domain-level Message.
-func ReqToMsg(req *pb.SendMessageRequest) (messenger.Message, error) {
-	var msg messenger.Message
+func ReqToMsg(req *pb.SendMessageRequest) (messenger.TeamsMessage, error) {
+	var msg messenger.TeamsMessage
 
 	switch req.MessageType.(type) {
 	case *pb.SendMessageRequest_ChannelMessage:
 		channelMsg := req.GetChannelMessage()
-		msg = messenger.Message{
+		msg = messenger.TeamsMessage{
 			Type:      messenger.MessageTypeChannel,
 			Content:   channelMsg.GetContent(),
 			TeamID:    channelMsg.GetTeamId(),
@@ -23,7 +23,7 @@ func ReqToMsg(req *pb.SendMessageRequest) (messenger.Message, error) {
 		}
 	case *pb.SendMessageRequest_ChatMessage:
 		chatMsg := req.GetChatMessage()
-		msg = messenger.Message{
+		msg = messenger.TeamsMessage{
 			Type:    messenger.MessageTypeChat,
 			Content: chatMsg.GetContent(),
 			ChatID:  chatMsg.GetChatId(),
