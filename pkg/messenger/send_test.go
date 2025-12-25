@@ -3,6 +3,8 @@ package messenger
 import (
 	"context"
 	"testing"
+
+	mocks "github.com/bautistv/posta-baut/pkg/messenger/mocks"
 )
 
 func TestSend(t *testing.T) {
@@ -16,7 +18,18 @@ func TestSend(t *testing.T) {
 		args    args
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Send Chat Message - Missing Chat ID",
+			args: args{
+				ctx: context.Background(),
+				m:   mocks.NewMockMessenger(nil),
+				msg: TeamsMessage{
+					Type:    MessageTypeChat,
+					Content: "Hello, World!",
+				},
+			},
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
