@@ -22,3 +22,9 @@ proto:
 	  --go-grpc_out=internal/pb --go-grpc_opt=paths=source_relative \
 	  --connect-go_out=internal/pb --connect-go_opt=paths=source_relative \
 	  proto/v1/posta_baut.proto
+
+# Test Go code
+.PHONY: test
+test:
+	go clean -testcache; \
+	go test ./...
