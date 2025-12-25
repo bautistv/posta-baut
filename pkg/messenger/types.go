@@ -6,13 +6,13 @@ type MessageType string
 
 const (
 	// MessageTypeChat represents a direct chat message between users.
-	MessageTypeChat    MessageType = "chat"
+	MessageTypeChat MessageType = "chat"
 	// MessageTypeChannel represents a message sent to a channel within a team.
 	MessageTypeChannel MessageType = "channel"
 )
 
-// Message represents a message to be sent, either to a chat or a channel.
-type Message struct {
+// TeamsMessage represents a message to be sent, either to a chat or a channel.
+type TeamsMessage struct {
 	Type    MessageType
 	Content string
 

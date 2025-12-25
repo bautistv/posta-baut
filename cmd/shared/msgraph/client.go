@@ -9,6 +9,13 @@ import (
 )
 
 func NewMSGraphClient(tenantID string, clientID string) (msgraphsdk.GraphServiceClient, error) {
+	if tenantID == "" {
+		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("tenant ID is required")
+	}
+	if clientID == "" {
+		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("client ID is required")
+	}
+
 	cred, _ := azidentity.NewDeviceCodeCredential(&azidentity.DeviceCodeCredentialOptions{
 		TenantID: tenantID,
 		ClientID: clientID,

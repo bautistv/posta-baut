@@ -1,25 +1,23 @@
 package client
 
 import (
-	"log"
+	"fmt"
 
 	config "github.com/bautistv/posta-baut/cmd/config"
 	lookup "github.com/bautistv/posta-baut/cmd/shared/lookup"
-	"github.com/bautistv/posta-baut/pkg/messenger"
+	msgraph "github.com/bautistv/posta-baut/pkg/messenger/msgraph"
 )
 
 // NewClient creates a new Client with the provided Messenger and LookupClient configurations.
-func NewClient(messengerConfig config.MSGraphClientConfig, lookupClientConfig config.MSGraphClientConfig) (Client, error) {
-	messenger, err := messenger.NewGraphMessenger(messengerConfig)
+func NewClient(messengerConfig config.ClientConfig, lookupClientConfig config.ClientConfig) (Client, error) {
+	messenger, err := msgraph.NewGraphMessenger(messengerConfig)
 	if err != nil {
-		log.Printf("failed to create Graph Messenger: %v", err)
-		return Client{}, err
+		return Client{}, fmt.Errorf("failed to create messenger: %w", err)
 	}
 
 	lookupClient, err := lookup.NewMSGraphLookupClient(lookupClientConfig)
 	if err != nil {
-		log.Printf("failed to create MS Graph Lookup Client: %v", err)
-		return Client{}, err
+		return Client{}, fmt.Errorf("failed to create lookup client: %w", err)
 	}
 
 	return Client{

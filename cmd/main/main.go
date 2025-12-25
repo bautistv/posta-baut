@@ -11,14 +11,14 @@ import (
 	yaml "github.com/goccy/go-yaml"
 )
 
-func loadConfig(path string) (config.ClientConfig, error) {
+func loadConfig(path string) (config.AppConfig, error) {
 	fileBytes, err := os.ReadFile(path)
 	if err != nil {
 		log.Fatalf("Error reading YAML file: %v", err)
 	}
 
 	// 3. Declare a variable of your struct type to hold the data
-	var config config.ClientConfig
+	var config config.AppConfig
 
 	// 4. Unmarshal the byte slice into the struct
 	if err := yaml.Unmarshal(fileBytes, &config); err != nil {
