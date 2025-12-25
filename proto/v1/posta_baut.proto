@@ -12,7 +12,7 @@ message TeamsChannelTarget {
   string thread_id = 3; // optional
 }
 
-message ChatTarget {
+message TeamsChatTarget {
   string chat_id = 1 [(google.api.field_behavior) = REQUIRED];
   string reply_to_message_id = 2; // optional
 }
@@ -20,7 +20,7 @@ message ChatTarget {
 message MessageTarget {
   oneof target {
     TeamsChannelTarget channel = 1;
-    ChatTarget chat = 2;
+    TeamsChatTarget chat = 2;
   }
 }
 

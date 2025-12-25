@@ -82,7 +82,7 @@ func (x *TeamsChannelTarget) GetThreadId() string {
 	return ""
 }
 
-type ChatTarget struct {
+type TeamsChatTarget struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	ChatId           string                 `protobuf:"bytes,1,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
 	ReplyToMessageId string                 `protobuf:"bytes,2,opt,name=reply_to_message_id,json=replyToMessageId,proto3" json:"reply_to_message_id,omitempty"` // optional
@@ -90,20 +90,20 @@ type ChatTarget struct {
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *ChatTarget) Reset() {
-	*x = ChatTarget{}
+func (x *TeamsChatTarget) Reset() {
+	*x = TeamsChatTarget{}
 	mi := &file_v1_posta_baut_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ChatTarget) String() string {
+func (x *TeamsChatTarget) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChatTarget) ProtoMessage() {}
+func (*TeamsChatTarget) ProtoMessage() {}
 
-func (x *ChatTarget) ProtoReflect() protoreflect.Message {
+func (x *TeamsChatTarget) ProtoReflect() protoreflect.Message {
 	mi := &file_v1_posta_baut_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -115,19 +115,19 @@ func (x *ChatTarget) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChatTarget.ProtoReflect.Descriptor instead.
-func (*ChatTarget) Descriptor() ([]byte, []int) {
+// Deprecated: Use TeamsChatTarget.ProtoReflect.Descriptor instead.
+func (*TeamsChatTarget) Descriptor() ([]byte, []int) {
 	return file_v1_posta_baut_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ChatTarget) GetChatId() string {
+func (x *TeamsChatTarget) GetChatId() string {
 	if x != nil {
 		return x.ChatId
 	}
 	return ""
 }
 
-func (x *ChatTarget) GetReplyToMessageId() string {
+func (x *TeamsChatTarget) GetReplyToMessageId() string {
 	if x != nil {
 		return x.ReplyToMessageId
 	}
@@ -191,7 +191,7 @@ func (x *MessageTarget) GetChannel() *TeamsChannelTarget {
 	return nil
 }
 
-func (x *MessageTarget) GetChat() *ChatTarget {
+func (x *MessageTarget) GetChat() *TeamsChatTarget {
 	if x != nil {
 		if x, ok := x.Target.(*MessageTarget_Chat); ok {
 			return x.Chat
@@ -209,7 +209,7 @@ type MessageTarget_Channel struct {
 }
 
 type MessageTarget_Chat struct {
-	Chat *ChatTarget `protobuf:"bytes,2,opt,name=chat,proto3,oneof"`
+	Chat *TeamsChatTarget `protobuf:"bytes,2,opt,name=chat,proto3,oneof"`
 }
 
 func (*MessageTarget_Channel) isMessageTarget_Target() {}
@@ -321,14 +321,13 @@ const file_v1_posta_baut_proto_rawDesc = "" +
 	"\ateam_id\x18\x01 \x01(\tB\x03\xe0A\x02R\x06teamId\x12\"\n" +
 	"\n" +
 	"channel_id\x18\x02 \x01(\tB\x03\xe0A\x02R\tchannelId\x12\x1b\n" +
-	"\tthread_id\x18\x03 \x01(\tR\bthreadId\"Y\n" +
-	"\n" +
-	"ChatTarget\x12\x1c\n" +
+	"\tthread_id\x18\x03 \x01(\tR\bthreadId\"^\n" +
+	"\x0fTeamsChatTarget\x12\x1c\n" +
 	"\achat_id\x18\x01 \x01(\tB\x03\xe0A\x02R\x06chatId\x12-\n" +
-	"\x13reply_to_message_id\x18\x02 \x01(\tR\x10replyToMessageId\"s\n" +
+	"\x13reply_to_message_id\x18\x02 \x01(\tR\x10replyToMessageId\"x\n" +
 	"\rMessageTarget\x122\n" +
-	"\achannel\x18\x01 \x01(\v2\x16.pb.TeamsChannelTargetH\x00R\achannel\x12$\n" +
-	"\x04chat\x18\x02 \x01(\v2\x0e.pb.ChatTargetH\x00R\x04chatB\b\n" +
+	"\achannel\x18\x01 \x01(\v2\x16.pb.TeamsChannelTargetH\x00R\achannel\x12)\n" +
+	"\x04chat\x18\x02 \x01(\v2\x13.pb.TeamsChatTargetH\x00R\x04chatB\b\n" +
 	"\x06target\"c\n" +
 	"\x12SendMessageRequest\x12.\n" +
 	"\x06target\x18\x01 \x01(\v2\x11.pb.MessageTargetB\x03\xe0A\x02R\x06target\x12\x1d\n" +
@@ -352,14 +351,14 @@ func file_v1_posta_baut_proto_rawDescGZIP() []byte {
 var file_v1_posta_baut_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_v1_posta_baut_proto_goTypes = []any{
 	(*TeamsChannelTarget)(nil),  // 0: pb.TeamsChannelTarget
-	(*ChatTarget)(nil),          // 1: pb.ChatTarget
+	(*TeamsChatTarget)(nil),     // 1: pb.TeamsChatTarget
 	(*MessageTarget)(nil),       // 2: pb.MessageTarget
 	(*SendMessageRequest)(nil),  // 3: pb.SendMessageRequest
 	(*SendMessageResponse)(nil), // 4: pb.SendMessageResponse
 }
 var file_v1_posta_baut_proto_depIdxs = []int32{
 	0, // 0: pb.MessageTarget.channel:type_name -> pb.TeamsChannelTarget
-	1, // 1: pb.MessageTarget.chat:type_name -> pb.ChatTarget
+	1, // 1: pb.MessageTarget.chat:type_name -> pb.TeamsChatTarget
 	2, // 2: pb.SendMessageRequest.target:type_name -> pb.MessageTarget
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
