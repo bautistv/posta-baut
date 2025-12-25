@@ -111,33 +111,35 @@ func TestSend_Fail(t *testing.T) {
 }
 
 func TestSend_Success(t *testing.T) {
-	tests := []struct {
-		name string // description of this test case
-		// Named input parameters for target function.
-		msg     messenger.TeamsMessage
-		wantErr bool
-	}{
-		{
-			name:    "successful chat message send",
-			msg:     validChatMessage,
-			wantErr: false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			ctrl := gomock.NewController(t)
-			defer ctrl.Finish()
-			mockMessenger := mocks.NewMockMessenger(ctrl)
+    tests := []struct {
+        name string
+        msg  messenger.TeamsMessage
+    }{
+        {"chat message", validChatMessage},
+        {"channel message", validChannelMessage},
+    }
 
-			switch tt.msg.Type {
-			case messenger.MessageTypeChannel:
-				mockMessenger.EXPECT().SendChannelMessage(gomock.Any(), validTeamID, validChannelID, tt.msg).Return(nil)
-			case messenger.MessageTypeChat:
-				mockMessenger.EXPECT().SendChatMessage(gomock.Any(), validChatID, tt.msg).Return(nil)
-			}
+    for _, tt := range tests {
+        tt := tt
+        t.Run(tt.name, func(t *testing.T) {
+            ctrl := gomock.NewController(t)
+            defer ctrl.Finish()
 
-			err := messenger.Send(context.Background(), mockMessenger, tt.msg)
-			require.NoError(t, err)
-		})
-	}
+            mockMessenger := mocks.NewMockMessenger(ctrl)
+
+            switch tt.msg.Type {
+            case messenger.MessageTypeChat:
+                mockMessenger.EXPECT().
+                    SendChatMessage(gomock.Any(), validChatID, tt.msg).
+                    Return(nil)
+            case messenger.MessageTypeChannel:
+                mockMessenger.EXPECT().
+                    SendChannelMessage(gomock.Any(), validTeamID, validChannelID, tt.msg).
+                    Return(nil)
+            }
+
+            err := messenger.Send(context.Background(), mockMessenger, tt.msg)
+            require.NoError(t, err)
+        })
+    }
 }
