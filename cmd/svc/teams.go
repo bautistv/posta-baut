@@ -39,7 +39,7 @@ func (s *teamsService) SendMessage(ctx context.Context, req *connect.Request[pb.
 	}
 
 	resp := &pb.SendMessageResponse{
-		Success: true,
+		MessageId: utils.MsgToUID(*msg).String(),
 	}
 	return connect.NewResponse(resp), nil
 }

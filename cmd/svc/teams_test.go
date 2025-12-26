@@ -7,6 +7,7 @@ import (
 
 	"connectrpc.com/connect"
 	"github.com/bautistv/posta-baut/cmd/client"
+	"github.com/bautistv/posta-baut/cmd/svc/utils"
 	pbv1 "github.com/bautistv/posta-baut/internal/pb/v1"
 	"github.com/bautistv/posta-baut/pkg/messenger"
 	mocks "github.com/bautistv/posta-baut/pkg/messenger/mocks"
@@ -22,12 +23,14 @@ const (
 var (
 	validReq = connect.NewRequest(
 		&pbv1.SendMessageRequest{
-			MessageType: &pbv1.SendMessageRequest_ChatMessage{
-				ChatMessage: &pbv1.ChatMessage{
-					Content: validMsgContent,
-					ChatId:  validChatID,
+			Target: &pbv1.MessageTarget{
+				Target: &pbv1.MessageTarget_Chat{
+					Chat: &pbv1.TeamsChatTarget{
+						ChatId: validChatID,
+					},
 				},
 			},
+			Content: validMsgContent,
 		},
 	)
 )
@@ -94,20 +97,25 @@ func Test_teamsService_SendMessage_Success(t *testing.T) {
 		ctrl := gomock.NewController(t)
 		defer ctrl.Finish()
 
-		msgr := mocks.NewMockMessenger(ctrl)
-		msgr.EXPECT().SendChatMessage(gomock.Any(), validChatID, messenger.TeamsMessage{
+		sendMsg := messenger.SendMessageRequest{
 			Content: validMsgContent,
-			Type:    messenger.MessageTypeChat,
-			ChatID:  validChatID,
-		}).Return(nil).Times(1)
+			Target: messenger.MessageTarget{
+				Chat: &messenger.ChatTarget{
+					ChatID: validChatID,
+				},
+			},
+		}
+
+		msgr := mocks.NewMockMessenger(ctrl)
+		msgr.EXPECT().SendChatMessage(gomock.Any(), validChatID, sendMsg).Return(nil).Times(1)
 
 		teamService := NewTeamsServiceClient(&client.Client{
 			Messenger: msgr,
 		})
 
 		want := &connect.Response[pbv1.SendMessageResponse]{
-			Msg: &pbv1.SendMessageResponse{
-				Success: true,
+		Msg: &pbv1.SendMessageResponse{
+				MessageId: utils.MsgToUID(sendMsg).String(),
 			},
 		}
 

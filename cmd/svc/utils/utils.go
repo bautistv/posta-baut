@@ -4,8 +4,6 @@ package utils
 import (
 	"fmt"
 
-	"fmt"
-
 	pbv1 "github.com/bautistv/posta-baut/internal/pb/v1"
 	"github.com/bautistv/posta-baut/pkg/messenger"
 
@@ -59,11 +57,17 @@ func ReqToMsg(pbReq *pbv1.SendMessageRequest) (*messenger.SendMessageRequest, er
     return domainReq, nil
 }
 
-func deterministicGUID(organisation string, account string) uuid.UUID {
+func MsgToUID(msg messenger.SendMessageRequest) uuid.UUID {
   var hash [16]byte
   var guid uuid.UUID
 
-  hash = xxh3.HashString128(organisation + account).Bytes()
+  input := fmt.Sprintf("%s%s%s%s%s", msg.Target.Channel.ChannelID,
+  	msg.Target.Channel.TeamID,
+	msg.Target.Chat.ChatID,
+	msg.Target.Channel.ThreadID,
+	msg.Target.Chat.ReplyToMessageID,
+	)
+  hash = xxh3.HashString128(input).Bytes()
 
   // uuid.FromBytes returns an error if the slice
   // of bytes is not 16 - as hash is defined as

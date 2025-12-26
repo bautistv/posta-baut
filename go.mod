@@ -8,8 +8,10 @@ require (
 	connectrpc.com/grpcreflect v1.3.0
 	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.13.1
 	github.com/goccy/go-yaml v1.19.1
+	github.com/google/uuid v1.6.0
 	github.com/microsoftgraph/msgraph-sdk-go v1.92.0
 	github.com/stretchr/testify v1.11.1
+	github.com/zeebo/xxh3 v1.0.2
 	go.uber.org/mock v0.6.0
 	golang.org/x/net v0.46.1-0.20251013234738-63d1a5100f82
 	google.golang.org/genproto/googleapis/api v0.0.0-20251213004720-97cd9d5aeac2
@@ -25,7 +27,7 @@ require (
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.0 // indirect
-	github.com/google/uuid v1.6.0 // indirect
+	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/microsoft/kiota-abstractions-go v1.9.3 // indirect
 	github.com/microsoft/kiota-authentication-azure-go v1.3.1 // indirect
