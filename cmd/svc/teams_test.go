@@ -8,16 +8,14 @@ import (
 	"connectrpc.com/connect"
 	"github.com/bautistv/posta-baut/cmd/client"
 	pbv1 "github.com/bautistv/posta-baut/internal/pb/v1"
-	"github.com/stretchr/testify/require"
-	"go.uber.org/mock/gomock"
-
-	// import messenger mock
 	"github.com/bautistv/posta-baut/pkg/messenger"
 	mocks "github.com/bautistv/posta-baut/pkg/messenger/mocks"
+	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
 )
 
 const (
-	validChatID = "chat-id"
+	validChatID     = "chat-id"
 	validMsgContent = "Hello!"
 )
 
@@ -61,7 +59,7 @@ func Test_teamsService_SendMessage_Failure(t *testing.T) {
 				req: connect.NewRequest(&pbv1.SendMessageRequest{}),
 			},
 			wantErrMsg: "failed to convert request to message: unsupported message type",
-			want: nil,
+			want:       nil,
 		},
 		{
 			name: "fail to send message",
@@ -73,7 +71,7 @@ func Test_teamsService_SendMessage_Failure(t *testing.T) {
 				req: validReq,
 			},
 			wantErrMsg: "failed to send message",
-			want:	   nil,
+			want:       nil,
 		},
 	}
 	for _, tt := range tests {
@@ -94,7 +92,7 @@ func Test_teamsService_SendMessage_Success(t *testing.T) {
 	t.Run("successfully send message", func(t *testing.T) {
 		// Setup mock messenger
 		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()	
+		defer ctrl.Finish()
 
 		msgr := mocks.NewMockMessenger(ctrl)
 		msgr.EXPECT().SendChatMessage(gomock.Any(), validChatID, messenger.TeamsMessage{
@@ -107,7 +105,7 @@ func Test_teamsService_SendMessage_Success(t *testing.T) {
 			Messenger: msgr,
 		})
 
-		want:= &connect.Response[pbv1.SendMessageResponse]{
+		want := &connect.Response[pbv1.SendMessageResponse]{
 			Msg: &pbv1.SendMessageResponse{
 				Success: true,
 			},

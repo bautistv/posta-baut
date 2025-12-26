@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/bautistv/posta-baut/cmd/client"
-
 	"github.com/stretchr/testify/require"
 )
 

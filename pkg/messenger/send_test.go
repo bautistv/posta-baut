@@ -19,21 +19,21 @@ var (
 		Target: messenger.MessageTarget{
 			Channel: &messenger.TeamsChannelTarget{
 				ChannelID: validChannelID,
-				TeamID: validTeamID,
-				ThreadID: validContent,
+				TeamID:    validTeamID,
+				ThreadID:  validContent,
 			},
 		},
-		Content:   validContent,
+		Content: validContent,
 	}
 
 	testChannelReply = messenger.SendMessageRequest{
 		Target: messenger.MessageTarget{
 			Channel: &messenger.TeamsChannelTarget{
 				ChannelID: validChannelID,
-				TeamID: validTeamID,
+				TeamID:    validTeamID,
 			},
 		},
-		Content:   validContent,
+		Content: validContent,
 	}
 
 	testChatMessage = messenger.SendMessageRequest{
@@ -42,17 +42,17 @@ var (
 				ChatID: validChatID,
 			},
 		},
-		Content:   validContent,
+		Content: validContent,
 	}
 
 	testChatReply = messenger.SendMessageRequest{
 		Target: messenger.MessageTarget{
 			Chat: &messenger.ChatTarget{
-				ChatID: validChatID,
+				ChatID:           validChatID,
 				ReplyToMessageID: validMessageID,
 			},
 		},
-		Content:   validContent,
+		Content: validContent,
 	}
 )
 
@@ -64,8 +64,7 @@ func TestSend_Fail(t *testing.T) {
 		msg        messenger.SendMessageRequest
 		wantErr    bool
 		wantErrMsg string
-	}{
-	}
+	}{}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 		})
@@ -73,14 +72,13 @@ func TestSend_Fail(t *testing.T) {
 }
 
 func TestSend_Success(t *testing.T) {
-    tests := []struct {
-        name string
-        msg  messenger.SendMessageRequest
-    }{
-    }
+	tests := []struct {
+		name string
+		msg  messenger.SendMessageRequest
+	}{}
 
-    for _, tt := range tests {
-        t.Run(tt.name, func(t *testing.T) {
-        })
-    }
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+		})
+	}
 }
