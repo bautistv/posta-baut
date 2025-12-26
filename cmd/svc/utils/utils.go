@@ -4,8 +4,13 @@ package utils
 import (
 	"fmt"
 
+	"fmt"
+
 	pbv1 "github.com/bautistv/posta-baut/internal/pb/v1"
 	"github.com/bautistv/posta-baut/pkg/messenger"
+
+	"github.com/google/uuid"
+	"github.com/zeebo/xxh3"
 )
 
 // ReqToMsg converts the protobuf SendMessageRequest into the domain SendMessageRequest.
@@ -52,4 +57,17 @@ func ReqToMsg(pbReq *pbv1.SendMessageRequest) (*messenger.SendMessageRequest, er
     }
 
     return domainReq, nil
+}
+
+func deterministicGUID(organisation string, account string) uuid.UUID {
+  var hash [16]byte
+  var guid uuid.UUID
+
+  hash = xxh3.HashString128(organisation + account).Bytes()
+
+  // uuid.FromBytes returns an error if the slice
+  // of bytes is not 16 - as hash is defined as
+  // [16]byte then we can ignore checking the error
+  guid, _ = uuid.FromBytes(hash[:])
+  return guid
 }
