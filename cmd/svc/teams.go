@@ -39,7 +39,7 @@ func (s *teamsService) SendMessage(ctx context.Context, req *connect.Request[pb.
 	}
 
 	resp := &pb.SendMessageResponse{
-		Success: true,
+		MessageId: "success", // TODO: Return idempotent messageid in response https://github.com/bautistv/posta-baut/issues/15
 	}
 	return connect.NewResponse(resp), nil
 }

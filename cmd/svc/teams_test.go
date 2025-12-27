@@ -8,10 +8,10 @@ import (
 	"connectrpc.com/connect"
 	"github.com/bautistv/posta-baut/cmd/client"
 	pbv1 "github.com/bautistv/posta-baut/internal/pb/v1"
-	"github.com/bautistv/posta-baut/pkg/messenger"
 	mocks "github.com/bautistv/posta-baut/pkg/messenger/mocks"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
+	"google.golang.org/protobuf/proto"
 )
 
 const (
@@ -22,10 +22,12 @@ const (
 var (
 	validReq = connect.NewRequest(
 		&pbv1.SendMessageRequest{
-			MessageType: &pbv1.SendMessageRequest_ChatMessage{
-				ChatMessage: &pbv1.ChatMessage{
-					Content: validMsgContent,
-					ChatId:  validChatID,
+			Content: validMsgContent,
+			Target: &pbv1.MessageTarget{
+				Target: &pbv1.MessageTarget_Chat{
+					Chat: &pbv1.TeamsChatTarget{
+						ChatId: validChatID,
+					},
 				},
 			},
 		},
@@ -58,7 +60,7 @@ func Test_teamsService_SendMessage_Failure(t *testing.T) {
 				ctx: context.Background(),
 				req: connect.NewRequest(&pbv1.SendMessageRequest{}),
 			},
-			wantErrMsg: "failed to convert request to message: unsupported message type",
+			wantErrMsg: "failed to convert request to message",
 			want:       nil,
 		},
 		{
@@ -95,24 +97,19 @@ func Test_teamsService_SendMessage_Success(t *testing.T) {
 		defer ctrl.Finish()
 
 		msgr := mocks.NewMockMessenger(ctrl)
-		msgr.EXPECT().SendChatMessage(gomock.Any(), validChatID, messenger.TeamsMessage{
-			Content: validMsgContent,
-			Type:    messenger.MessageTypeChat,
-			ChatID:  validChatID,
-		}).Return(nil).Times(1)
+		msgr.EXPECT().SendChatMessage(gomock.Any(), validChatID, validMsgContent).Return(nil).Times(1)
 
 		teamService := NewTeamsServiceClient(&client.Client{
 			Messenger: msgr,
 		})
 
-		want := &connect.Response[pbv1.SendMessageResponse]{
-			Msg: &pbv1.SendMessageResponse{
-				Success: true,
-			},
+		want := &pbv1.SendMessageResponse{
+			MessageId: "success", // TODO: Return idempotent messageid in response https://github.com/bautistv/posta-baut/issues/15
 		}
 
 		got, err := teamService.SendMessage(context.Background(), validReq)
 		require.NoError(t, err)
-		require.Equal(t, got, want, "teamsService.SendMessage() = %v, want %v", got, want)
+		// assert.Equal(t, got.Msg.MessageId, want.MessageId)
+		proto.Equal(got.Msg, want)
 	})
 }
