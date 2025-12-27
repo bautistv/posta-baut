@@ -96,7 +96,7 @@ func TestReqToMsg(t *testing.T) {
 			if tt.wantErrMsg != "" {
 				require.ErrorContains(t, gotErr, tt.wantErrMsg)
 			} else {
-				assert.Equal(t, tt.want, got)
+				assert.Equal(t, tt.want, &got)
 				require.NoError(t, gotErr)
 			}
 		})
