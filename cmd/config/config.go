@@ -2,7 +2,7 @@ package msgraph
 
 // AppConfig holds configuration for a messenger client.
 type AppConfig struct {
-	SenderConfig    ClientConfig `yaml:"sender_config"`
+	SenderConfig       ClientConfig `yaml:"sender_config"`
 	LookupClientConfig ClientConfig `yaml:"lookup_client_config"`
 }
 

@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TeamsService_SendMessage_FullMethodName = "/posta_baut.TeamsService/SendMessage"
+	TeamsService_SendMessage_FullMethodName = "/pb.TeamsService/SendMessage"
 )
 
 // TeamsServiceClient is the client API for TeamsService service.
@@ -108,7 +108,7 @@ func _TeamsService_SendMessage_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TeamsService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "posta_baut.TeamsService",
+	ServiceName: "pb.TeamsService",
 	HandlerType: (*TeamsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

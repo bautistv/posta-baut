@@ -11,51 +11,51 @@ import (
 )
 
 const (
-	validChannelID = "channel-123"
-	validTeamID = "team-123"
-	validThreadID = "thread-123"
+	validChannelID  = "channel-123"
+	validTeamID     = "team-123"
+	validThreadID   = "thread-123"
 	validMsgContent = "Hello!"
 )
 
 var (
 	pbReqChannelReply = &pbv1.SendMessageRequest{
 		Target: &pbv1.MessageTarget{
-					Target: &pbv1.MessageTarget_Channel{
-						Channel: &pbv1.TeamsChannelTarget{
-							ChannelId: validChannelID,
-							TeamId: validTeamID,
-							ThreadId: validThreadID,
-						},
-					},
+			Target: &pbv1.MessageTarget_Channel{
+				Channel: &pbv1.TeamsChannelTarget{
+					ChannelId: validChannelID,
+					TeamId:    validTeamID,
+					ThreadId:  validThreadID,
 				},
+			},
+		},
 		Content: validMsgContent,
 	}
 )
 
 func TestReqToMsg(t *testing.T) {
 	tests := []struct {
-		name string
-		pbReq   *pbv1.SendMessageRequest
-		want    *messenger.SendMessageRequest
+		name       string
+		pbReq      *pbv1.SendMessageRequest
+		want       *messenger.SendMessageRequest
 		wantErrMsg string
 	}{
 		{
-			name: "success",
+			name:  "success",
 			pbReq: pbReqChannelReply,
 			want: &messenger.SendMessageRequest{
 				Target: messenger.MessageTarget{
 					Channel: &messenger.TeamsChannelTarget{
 						ChannelID: validChannelID,
-						TeamID: validTeamID,
-						ThreadID: validThreadID,
+						TeamID:    validTeamID,
+						ThreadID:  validThreadID,
 					},
 				},
 				Content: validMsgContent,
 			},
 		},
 		{
-			name: "nil request",
-			pbReq: nil,
+			name:       "nil request",
+			pbReq:      nil,
 			wantErrMsg: "request cannot be nil",
 		},
 		{

@@ -334,7 +334,9 @@ const file_v1_posta_baut_proto_rawDesc = "" +
 	"\acontent\x18\x02 \x01(\tB\x03\xe0A\x02R\acontent\"9\n" +
 	"\x13SendMessageResponse\x12\"\n" +
 	"\n" +
-	"message_id\x18\x01 \x01(\tB\x03\xe0A\x02R\tmessageIdB4Z2github.com/bautistv/posta-baut/internal/pb/v1;pbv1b\x06proto3"
+	"message_id\x18\x01 \x01(\tB\x03\xe0A\x02R\tmessageId2N\n" +
+	"\fTeamsService\x12>\n" +
+	"\vSendMessage\x12\x16.pb.SendMessageRequest\x1a\x17.pb.SendMessageResponseB4Z2github.com/bautistv/posta-baut/internal/pb/v1;pbv1b\x06proto3"
 
 var (
 	file_v1_posta_baut_proto_rawDescOnce sync.Once
@@ -360,8 +362,10 @@ var file_v1_posta_baut_proto_depIdxs = []int32{
 	0, // 0: pb.MessageTarget.channel:type_name -> pb.TeamsChannelTarget
 	1, // 1: pb.MessageTarget.chat:type_name -> pb.TeamsChatTarget
 	2, // 2: pb.SendMessageRequest.target:type_name -> pb.MessageTarget
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
+	3, // 3: pb.TeamsService.SendMessage:input_type -> pb.SendMessageRequest
+	4, // 4: pb.TeamsService.SendMessage:output_type -> pb.SendMessageResponse
+	4, // [4:5] is the sub-list for method output_type
+	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -384,7 +388,7 @@ func file_v1_posta_baut_proto_init() {
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
 		GoTypes:           file_v1_posta_baut_proto_goTypes,
 		DependencyIndexes: file_v1_posta_baut_proto_depIdxs,

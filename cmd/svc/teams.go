@@ -9,16 +9,18 @@ import (
 	"github.com/bautistv/posta-baut/cmd/client"
 	utils "github.com/bautistv/posta-baut/cmd/svc/utils"
 	pb "github.com/bautistv/posta-baut/internal/pb/v1"
+	"github.com/bautistv/posta-baut/internal/pb/v1/pbv1connect"
 	"github.com/bautistv/posta-baut/pkg/messenger"
 )
 
 // teamsService implements the TeamsService defined in the protobuf.
 type teamsService struct {
+	pbv1connect.UnimplementedTeamsServiceHandler
 	Client *client.Client
 }
 
-// NewTeamsServiceClient creates a new TeamsService with the provided client.
-func NewTeamsServiceClient(client *client.Client) *teamsService {
+// NewTeamsService creates a new TeamsService with the provided client.
+func NewTeamsService(client *client.Client) *teamsService {
 	return &teamsService{
 		Client: client,
 	}

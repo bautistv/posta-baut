@@ -3,15 +3,19 @@ package server
 import (
 	"testing"
 
-	"github.com/bautistv/posta-baut/cmd/client"
+	"github.com/bautistv/posta-baut/internal/pb/v1/pbv1connect"
 	"github.com/stretchr/testify/require"
 )
 
 func TestNewServer(t *testing.T) {
+	type fakeTeamsService struct {
+		pbv1connect.UnimplementedTeamsServiceHandler
+	}
+
 	t.Run("successful server initialisation", func(t *testing.T) {
-		teamsServiceClient := client.Client{}
-		_, err := NewServer(teamsServiceClient)
-		require.NoErrorf(t, err, "NewServer() error = %v, expected no error", err)
+		svc := &fakeTeamsService{}
+		_, err := NewServer(svc)
+		require.NoError(t, err)
 	})
 }
 

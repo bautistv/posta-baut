@@ -6,6 +6,7 @@ import (
 
 	"github.com/bautistv/posta-baut/cmd/client"
 	config "github.com/bautistv/posta-baut/cmd/config"
+	"github.com/bautistv/posta-baut/cmd/svc"
 
 	"github.com/bautistv/posta-baut/cmd/server"
 	yaml "github.com/goccy/go-yaml"
@@ -34,15 +35,16 @@ func main() {
 		return
 	}
 
-	// Create client configuration
+	// Create teams service
 	cli, err := client.NewClient(cfg.SenderConfig, cfg.LookupClientConfig)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v\n", err)
 		return
 	}
+	svc := svc.NewTeamsService(&cli)
 
 	// Create and run the server
-	server, err := server.NewServer(cli)
+	server, err := server.NewServer(svc)
 	if err != nil {
 		log.Fatalf("Failed to create server: %v\n", err)
 		return

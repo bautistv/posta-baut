@@ -35,7 +35,7 @@ var (
 )
 
 func TestNewTeamsServiceClient(t *testing.T) {
-	tsClient := NewTeamsServiceClient(&client.Client{})
+	tsClient := NewTeamsService(&client.Client{})
 	require.Equal(t, tsClient, &teamsService{
 		Client: &client.Client{},
 	})
@@ -55,7 +55,7 @@ func Test_teamsService_SendMessage_Failure(t *testing.T) {
 	}{
 		{
 			name: "fail to convert request to message",
-			s:    NewTeamsServiceClient(&client.Client{}),
+			s:    NewTeamsService(&client.Client{}),
 			args: args{
 				ctx: context.Background(),
 				req: connect.NewRequest(&pbv1.SendMessageRequest{}),
@@ -65,7 +65,7 @@ func Test_teamsService_SendMessage_Failure(t *testing.T) {
 		},
 		{
 			name: "fail to send message",
-			s: NewTeamsServiceClient(&client.Client{
+			s: NewTeamsService(&client.Client{
 				Messenger: nil,
 			}),
 			args: args{
@@ -99,7 +99,7 @@ func Test_teamsService_SendMessage_Success(t *testing.T) {
 		msgr := mocks.NewMockMessenger(ctrl)
 		msgr.EXPECT().SendChatMessage(gomock.Any(), validChatID, validMsgContent).Return(nil).Times(1)
 
-		teamService := NewTeamsServiceClient(&client.Client{
+		teamService := NewTeamsService(&client.Client{
 			Messenger: msgr,
 		})
 

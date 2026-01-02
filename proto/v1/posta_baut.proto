@@ -6,6 +6,10 @@ option go_package = "github.com/bautistv/posta-baut/internal/pb/v1;pbv1";
 
 import "google/api/field_behavior.proto";
 
+service TeamsService {
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+}
+
 message TeamsChannelTarget {
   string team_id = 1 [(google.api.field_behavior) = REQUIRED];
   string channel_id = 2 [(google.api.field_behavior) = REQUIRED];

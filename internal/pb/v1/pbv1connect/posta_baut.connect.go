@@ -22,7 +22,7 @@ const _ = connect.IsAtLeastVersion1_13_0
 
 const (
 	// TeamsServiceName is the fully-qualified name of the TeamsService service.
-	TeamsServiceName = "posta_baut.TeamsService"
+	TeamsServiceName = "pb.TeamsService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -35,16 +35,16 @@ const (
 const (
 	// TeamsServiceSendMessageProcedure is the fully-qualified name of the TeamsService's SendMessage
 	// RPC.
-	TeamsServiceSendMessageProcedure = "/posta_baut.TeamsService/SendMessage"
+	TeamsServiceSendMessageProcedure = "/pb.TeamsService/SendMessage"
 )
 
-// TeamsServiceClient is a client for the posta_baut.TeamsService service.
+// TeamsServiceClient is a client for the pb.TeamsService service.
 type TeamsServiceClient interface {
 	SendMessage(context.Context, *connect.Request[v1.SendMessageRequest]) (*connect.Response[v1.SendMessageResponse], error)
 }
 
-// NewTeamsServiceClient constructs a client for the posta_baut.TeamsService service. By default, it
-// uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
+// NewTeamsServiceClient constructs a client for the pb.TeamsService service. By default, it uses
+// the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
 // uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the connect.WithGRPC() or
 // connect.WithGRPCWeb() options.
 //
@@ -68,12 +68,12 @@ type teamsServiceClient struct {
 	sendMessage *connect.Client[v1.SendMessageRequest, v1.SendMessageResponse]
 }
 
-// SendMessage calls posta_baut.TeamsService.SendMessage.
+// SendMessage calls pb.TeamsService.SendMessage.
 func (c *teamsServiceClient) SendMessage(ctx context.Context, req *connect.Request[v1.SendMessageRequest]) (*connect.Response[v1.SendMessageResponse], error) {
 	return c.sendMessage.CallUnary(ctx, req)
 }
 
-// TeamsServiceHandler is an implementation of the posta_baut.TeamsService service.
+// TeamsServiceHandler is an implementation of the pb.TeamsService service.
 type TeamsServiceHandler interface {
 	SendMessage(context.Context, *connect.Request[v1.SendMessageRequest]) (*connect.Response[v1.SendMessageResponse], error)
 }
@@ -91,7 +91,7 @@ func NewTeamsServiceHandler(svc TeamsServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(teamsServiceMethods.ByName("SendMessage")),
 		connect.WithHandlerOptions(opts...),
 	)
-	return "/posta_baut.TeamsService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/pb.TeamsService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case TeamsServiceSendMessageProcedure:
 			teamsServiceSendMessageHandler.ServeHTTP(w, r)
@@ -105,5 +105,5 @@ func NewTeamsServiceHandler(svc TeamsServiceHandler, opts ...connect.HandlerOpti
 type UnimplementedTeamsServiceHandler struct{}
 
 func (UnimplementedTeamsServiceHandler) SendMessage(context.Context, *connect.Request[v1.SendMessageRequest]) (*connect.Response[v1.SendMessageResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("posta_baut.TeamsService.SendMessage is not implemented"))
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("pb.TeamsService.SendMessage is not implemented"))
 }

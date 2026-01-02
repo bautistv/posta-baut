@@ -13,8 +13,7 @@ import (
 
 	"connectrpc.com/grpchealth"
 	"connectrpc.com/grpcreflect"
-	"github.com/bautistv/posta-baut/cmd/client"
-	"github.com/bautistv/posta-baut/cmd/svc"
+	"github.com/bautistv/posta-baut/internal/pb/v1/pbv1connect"
 	pbconnect "github.com/bautistv/posta-baut/internal/pb/v1/pbv1connect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
@@ -26,22 +25,22 @@ type Server struct {
 }
 
 // NewServer creates and configures a new Server instance.
-func NewServer(teamsServiceClient client.Client) (Server, error) {
-	svc := svc.NewTeamsServiceClient(&teamsServiceClient)
-	path, handler := pbconnect.NewTeamsServiceHandler(svc)
+func NewServer(teamsSvc pbv1connect.TeamsServiceHandler) (Server, error) {
+	if teamsSvc == nil {
+		return Server{}, errors.New("teams service is nil")
+	}
 
-	// Create HTTP mux and register handlers
 	mux := http.NewServeMux()
-	mux.Handle(path, handler)
 
-	// Add health check service
 	mux.Handle(grpchealth.NewHandler(
 		grpchealth.NewStaticChecker(pbconnect.TeamsServiceName),
 	))
-	// Add gRPC reflection for debugging (optional)
 	mux.Handle(grpcreflect.NewHandlerV1Alpha(
 		grpcreflect.NewStaticReflector(pbconnect.TeamsServiceName),
 	))
+
+	path, handler := pbconnect.NewTeamsServiceHandler(teamsSvc)
+	mux.Handle(path, handler)
 
 	// --- HTTP Server Configuration ---
 	addr := fmt.Sprintf(":%d", 8080)
