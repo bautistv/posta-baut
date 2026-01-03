@@ -2,7 +2,9 @@ client_config:
   sender_config:
     tenant_id: "your-messenger-tenant-id"
     client_id: "your-messenger-client-id"
+    client_secret: "your-messenger-client-secret"
 
   lookup_client_config:
     tenant_id: "your-lookup-tenant-id"
     client_id: "your-lookup-client-id"
+    client_secret: "your-lookup-client-secret"

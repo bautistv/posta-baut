@@ -10,4 +10,5 @@ type AppConfig struct {
 type ClientConfig struct {
 	TenantID string `yaml:"tenant_id"`
 	ClientID string `yaml:"client_id"`
+	ClientSecret string `yaml:"client_secret"`
 }
