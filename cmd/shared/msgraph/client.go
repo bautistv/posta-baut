@@ -20,7 +20,7 @@ func NewMSGraphClient(tenantID string, clientID string, clientSecret string) (*m
 	}
 
 	graphServiceClient, err := gh.NewGraphHelper().NewGraphForAppAuth(tenantID, clientID, clientSecret)
-	if err!=nil {
+	if err != nil {
 		return nil, fmt.Errorf("error creating graph service client with auth: %w", err)
 	}
 

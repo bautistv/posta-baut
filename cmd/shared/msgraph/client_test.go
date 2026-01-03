@@ -9,8 +9,8 @@ import (
 
 func TestNewMSGraphClient(t *testing.T) {
 	type args struct {
-		tenantID string
-		clientID string
+		tenantID     string
+		clientID     string
 		clientSecret string
 	}
 	tests := []struct {

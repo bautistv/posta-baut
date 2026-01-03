@@ -8,8 +8,9 @@ import (
 )
 
 const (
-	validTenantID = "tenant-123"
-	validClientID = "client-123"
+	validTenantID     = "tenant-123"
+	validClientID     = "client-123"
+	validClientSecret = "client-secret-123"
 )
 
 func TestNewClient(t *testing.T) {
@@ -28,12 +29,14 @@ func TestNewClient(t *testing.T) {
 			name: "valid messenger config",
 			args: args{
 				messengerConfig: config.ClientConfig{
-					TenantID: validTenantID,
-					ClientID: validClientID,
+					TenantID:     validTenantID,
+					ClientID:     validClientID,
+					ClientSecret: validClientSecret,
 				},
 				lookupClientConfig: config.ClientConfig{
-					TenantID: validTenantID,
-					ClientID: validClientID,
+					TenantID:     validTenantID,
+					ClientID:     validClientID,
+					ClientSecret: validClientSecret,
 				},
 			},
 			wantErr:    false,
@@ -50,6 +53,7 @@ func TestNewClient(t *testing.T) {
 				lookupClientConfig: config.ClientConfig{
 					TenantID: validTenantID,
 					ClientID: validClientID,
+					ClientSecret: validClientSecret,
 				},
 			},
 			wantErr:    true,
@@ -61,6 +65,7 @@ func TestNewClient(t *testing.T) {
 				messengerConfig: config.ClientConfig{
 					TenantID: validTenantID,
 					ClientID: validClientID,
+					ClientSecret: validClientSecret,
 				},
 				lookupClientConfig: config.ClientConfig{
 					TenantID: "",
