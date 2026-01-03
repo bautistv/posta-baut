@@ -8,6 +8,7 @@ type AppConfig struct {
 
 // ClientConfig holds credentials for creating a Microsoft Graph Client.
 type ClientConfig struct {
-	TenantID string `yaml:"tenant_id"`
-	ClientID string `yaml:"client_id"`
+	TenantID     string `yaml:"tenant_id"`
+	ClientID     string `yaml:"client_id"`
+	ClientSecret string `yaml:"client_secret"`
 }
