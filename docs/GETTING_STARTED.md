@@ -13,7 +13,7 @@ See installation instructions here:
 
 ---
 
-## Example server
+## Use the example server
 
 1. Clone the repo
 
