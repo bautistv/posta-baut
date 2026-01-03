@@ -37,7 +37,7 @@ func (s *teamsService) SendMessage(ctx context.Context, req *connect.Request[pb.
 	// Use the client's Messenger to send the message
 	err = messenger.Send(ctx, s.Client.Messenger, msg)
 	if err != nil {
-		return nil, fmt.Errorf("failed to send message: %w", err)
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to send message: %w", err))
 	}
 
 	resp := &pb.SendMessageResponse{
