@@ -89,9 +89,7 @@ Use it as a service if:
 
 **Library mode:** `go get github.com/bautistv/posta-baut` and import `pkg/messenger`
 
-**Service mode:** Clone the repo, add your team configs, run the service
-
-TODO: Add docs folder
+**Service mode:** Clone the repo, add your team configs, run the service.
 
 See the [docs](./docs/) for setup details, required Microsoft permissions, and examples.
 
