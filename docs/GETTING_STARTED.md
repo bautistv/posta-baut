@@ -1,12 +1,8 @@
-# Getting started
+# Getting Started
 
 ## Prerequisites
 
-Ensure you have [Go](https://go.dev/) and [grpcurl](https://github.com/fullstorydev/grpcurl) installed.
-
-See installation instructions here:
-
-- Git
+- [Git](https://git-scm.com/install)
 - [Go](https://go.dev/doc/install)
 - Network access to Microsoft Graph (for API calls)
 - [Recommended] [`grpcurl`](https://github.com/fullstorydev/grpcurl) for testing gRPC endpoints
