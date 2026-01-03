@@ -1,34 +1,28 @@
 package msgraph
 
 import (
-	"context"
 	"fmt"
 
-	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	gh "github.com/bautistv/posta-baut/cmd/shared/msgraph/graphhelper"
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 )
 
-func NewMSGraphClient(tenantID string, clientID string) (msgraphsdk.GraphServiceClient, error) {
+// NewMSGraphClient returns a GraphServiceClient with app permissions.
+func NewMSGraphClient(tenantID string, clientID string, clientSecret string) (*msgraphsdk.GraphServiceClient, error) {
 	if tenantID == "" {
-		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("tenant ID is required")
+		return nil, fmt.Errorf("tenant ID is required")
 	}
 	if clientID == "" {
-		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("client ID is required")
+		return nil, fmt.Errorf("client ID is required")
+	}
+	if clientSecret == "" {
+		return nil, fmt.Errorf("clientSecret is required")
 	}
 
-	cred, _ := azidentity.NewDeviceCodeCredential(&azidentity.DeviceCodeCredentialOptions{
-		TenantID: tenantID,
-		ClientID: clientID,
-		UserPrompt: func(ctx context.Context, message azidentity.DeviceCodeMessage) error {
-			fmt.Println(message.Message)
-			return nil
-		},
-	})
-
-	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(cred, []string{"User.Read"})
-	if err != nil {
-		fmt.Printf("error creating client: %v\n", err)
-		return msgraphsdk.GraphServiceClient{}, fmt.Errorf("error creating Microsoft Graph Client: %w", err)
+	graphServiceClient, err := gh.NewGraphHelper().NewGraphForAppAuth(tenantID, clientID, clientSecret)
+	if err!=nil {
+		return nil, fmt.Errorf("error creating graph service client with auth: %w", err)
 	}
-	return *client, nil
+
+	return graphServiceClient, nil
 }

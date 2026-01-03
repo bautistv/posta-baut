@@ -11,6 +11,7 @@ func TestNewMSGraphClient(t *testing.T) {
 	type args struct {
 		tenantID string
 		clientID string
+		clientSecret string
 	}
 	tests := []struct {
 		name    string
@@ -22,7 +23,7 @@ func TestNewMSGraphClient(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewMSGraphClient(tt.args.tenantID, tt.args.clientID)
+			got, err := NewMSGraphClient(tt.args.tenantID, tt.args.clientID, tt.args.clientSecret)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("NewMSGraphClient() error = %v, wantErr %v", err, tt.wantErr)
 			}

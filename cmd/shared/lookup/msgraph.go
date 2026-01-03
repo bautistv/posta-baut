@@ -17,13 +17,13 @@ type MSGraphLookup struct {
 
 // NewMSGraphLookupClient creates a new MSGraphLookup instance.
 func NewMSGraphLookupClient(cfg config.ClientConfig) (*MSGraphLookup, error) {
-	NewMSGraphClient, err := msgraph.NewMSGraphClient(cfg.TenantID, cfg.ClientID)
+	NewMSGraphClient, err := msgraph.NewMSGraphClient(cfg.TenantID, cfg.ClientID, cfg.ClientSecret)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create MS Graph Client: %w", err)
 	}
 	client := NewMSGraphClient
 	return &MSGraphLookup{
-		client: client,
+		client: *client,
 	}, nil
 }
 
